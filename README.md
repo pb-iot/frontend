@@ -1,3 +1,6 @@
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)
+](https://pr.new/pb-iot/frontend)
+
 # Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
