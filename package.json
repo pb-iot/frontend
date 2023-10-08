@@ -13,6 +13,7 @@
     "@iconify/json": "^2.2.125",
     "@nuxt/devtools": "latest",
     "@nuxt/ui": "npm:@nuxt/ui-edge@latest",
+    "@pinia/nuxt": "^0.4.11",
     "@vueuse/nuxt": "^10.5.0",
     "nuxt": "^3.7.4",
     "vue": "^3.3.4",
