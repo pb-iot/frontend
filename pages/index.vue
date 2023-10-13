@@ -5,11 +5,11 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="mx-auto text-center">
-  <UButton type="submit" class="mt-20 mb-2 mx-auto min-w-[400px] justify-center scale-90">
+  <div class="min-w-[450px] mx-auto text-center">
+  <UButton to="/login" class="mt-20 mb-2 mx-auto" block size="sm">
       Zaloguj się
     </UButton>
-    <UButton type="submit" class="mx-auto min-w-[400px] justify-center scale-90">
+    <UButton to="/register" class="mx-auto" block size="sm">
     Zarejestruj się
   </UButton>
 </div>
