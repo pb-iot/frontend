@@ -44,12 +44,20 @@ const submit = createSubmitHandler(schema, (values) => {
     <!-- <UFormGroup label="E-mail" required name="email" class="mb-1">
       <UInput placeholder="you@example.com" icon="i-heroicons-envelope" />
     </UFormGroup>
-    <UFormGroup label="Hasło" required name="password" class="mb-1">
+    <UFormGroup
+      label="Hasło"
+      required
+      name="password"
+      class="mb-1"
+    >
       <UInput type="password" />
     </UFormGroup> -->
     <UAlert title="Nie posiadasz konta?" class="mt-5">
       <template #description>
-        <ULink to="/register" class="text-primary text-sm hover:underline">
+        <ULink
+          to="/register"
+          class="text-primary text-sm hover:underline"
+        >
           Zarejestruj się!
         </ULink>
       </template>
