@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
-    "lint": "eslint '*.{js,cjs,mjs,ts,vue}'"
+    "lint": "eslint '**/*.{js,cjs,mjs,ts,vue}'"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.125",
