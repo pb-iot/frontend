@@ -14,8 +14,16 @@ definePageMeta({
     <UFormGroup label="E-mail" required name="email" class="mt-4">
       <UInput placeholder="you@example.com" icon="i-heroicons-envelope" />
     </UFormGroup>
-    <UButton type="submit" class="mt-16 mx-auto" block>
-      Resetuj hasło
-    </UButton>
+    <div class="grid grid-cols-2 gap-x-4 mt-16 mx-auto">
+      <UButton to="/login" block>Cofnij</UButton>
+      <UButton to="/reset-password-message" block>Resetuj hasło</UButton>
+    </div>
+    <UAlert title="Nie posiadasz konta?" class="mt-5">
+      <template #description>
+        <ULink to="/register" class="text-primary text-sm hover:underline">
+          Zarejestruj się!
+        </ULink>
+      </template>
+    </UAlert>
   </div>
 </template>

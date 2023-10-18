@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="min-w-[450px] mx-auto text-center">
+  <div class="min-w-[450px] mx-auto">
   <UButton to="/login" class="mt-20 mb-2 mx-auto" block size="sm">
       Zaloguj się
     </UButton>
