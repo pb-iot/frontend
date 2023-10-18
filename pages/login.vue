@@ -9,9 +9,9 @@ definePageMeta({
     <UFormGroup label="E-mail" required name="email" class="mb-1">
       <UInput placeholder="you@example.com" icon="i-heroicons-envelope" />
     </UFormGroup>
-    <UFormGroup label="Hasło" required name="password" class="mb-1">
+    <UFormGroup label="Hasło" required name="password">
       <UInput type="password" />
-      <ULink to="/reset-password" class="mt-2 text-primary text-sm hover:underline">
+      <ULink to="/reset-password" class="text-primary text-sm hover:underline">
         Nie pamiętasz hasła?
       </ULink>
     </UFormGroup>

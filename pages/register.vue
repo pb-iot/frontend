@@ -18,7 +18,7 @@ definePageMeta({
     <UFormGroup label="Hasło" required name="password" class="mb-1">
       <UInput type="password" />
     </UFormGroup>
-    <UFormGroup label="Powtórz hasło" required name="password" class="mb-1">
+    <UFormGroup label="Powtórz hasło" required name="password">
       <UInput type="password" />
     </UFormGroup>
     <UButton type="submit" class="mt-20 mx-auto" block>

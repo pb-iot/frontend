@@ -15,15 +15,6 @@ definePageMeta({
       <UButton to="/reset-password" block>Cofnij</UButton>
       <UButton to="/reset-password-message" block>Wyślij wiadomość ponownie</UButton>
     </div>
-    <!-- <UButton type="submit" class="mt-[8.5rem] mx-auto" block>
-        Wyślij wiadomość ponownie
-    </UButton> -->
-    <!-- <UAlert 
-      title="Porada" 
-      description="Jeżeli nie możesz odnaleźć wiadomości, poszukaj w katalogu spam lub w innych zakładkach."
-      color="primary"
-      variant="outline"
-      class="text-center mt-5"/> -->
     <UAlert title="Porada" class="mt-5 text-justify">
       <template #description>
             Jeżeli nadal nie możesz odnaleźć wiadomości, poszukaj w katalogu spam lub w innych zakładkach.
