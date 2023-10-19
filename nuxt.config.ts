@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: [
       'defineStore',
-      'acceptHMRUpdate',
+      'acceptHMRUpdate'
     ]
   },
 
@@ -33,14 +34,17 @@ export default defineNuxtConfig({
   vite: {
     vue: {
       script: {
+        globalTypeFiles: readdirSync(new URL('./types', import.meta.url)).map(
+          (file) => fileURLToPath(new URL(`./types/${file}`, import.meta.url))
+        ),
         fs: {
-          fileExists(file: string) {
-            return existsSync(file);
+          fileExists (file: string) {
+            return existsSync(file)
           },
-          readFile(file: string) {
-            return readFileSync(file, "utf-8");
-          },
-        },
+          readFile (file: string) {
+            return readFileSync(file, 'utf-8')
+          }
+        }
       }
     }
   },
@@ -49,5 +53,5 @@ export default defineNuxtConfig({
     api: {
       baseUrl: ''
     }
-  },
+  }
 })
