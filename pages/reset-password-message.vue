@@ -11,7 +11,7 @@ definePageMeta({
       color="primary"
       variant="outline"
       class="text-center"/>
-      <div class="grid grid-cols-2 gap-x-4 mt-[9.25rem] mx-auto">
+    <div class="grid grid-cols-2 gap-x-4 mt-[9.25rem] mx-auto">
       <UButton to="/reset-password" block>Cofnij</UButton>
       <UButton to="/reset-password-message" block>Wyślij wiadomość ponownie</UButton>
     </div>
