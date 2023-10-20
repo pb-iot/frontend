@@ -5,6 +5,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt'],
+  ssr: false,
 
   ui: {
     global: true,
