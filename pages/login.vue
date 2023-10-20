@@ -25,19 +25,26 @@ const submit = createSubmitHandler(schema, (values) => {
         class="py-1"
         name="email"
         label="E-mail"
-       />
+      />
       <div>
         <TextField
           placeholder="Wpisz hasło"
           class="py-1"
           name="password"
           label="Hasło"
-         />
-        <ULink to="/reset-password" class="mt-2 text-primary text-sm hover:underline">
+        />
+        <ULink
+          to="/reset-password"
+          class="mt-2 text-primary text-sm hover:underline"
+        >
           Nie pamiętasz hasła?
         </ULink>
       </div>
-      <UButton type="submit" class="mt-20 mx-auto" block>
+      <UButton
+        type="submit"
+        class="mt-20 mx-auto"
+        block
+      >
         Zaloguj się
       </UButton>
     </Form>
@@ -52,7 +59,10 @@ const submit = createSubmitHandler(schema, (values) => {
     >
       <UInput type="password" />
     </UFormGroup> -->
-    <UAlert title="Nie posiadasz konta?" class="mt-5">
+    <UAlert
+      title="Nie posiadasz konta?"
+      class="mt-5"
+    >
       <template #description>
         <ULink
           to="/register"

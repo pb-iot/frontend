@@ -13,4 +13,3 @@ declare interface TextFieldProps<T = string> extends GeneralFieldProps<T> {
   color?: 'white' | 'primary' | 'gray'
   size?: '2xs' | 'xs' |'sm' | 'md' | 'lg' | 'xl'
 }
-  
