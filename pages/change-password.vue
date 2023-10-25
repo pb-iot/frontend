@@ -2,6 +2,24 @@
 definePageMeta({
   layout: 'auth'
 })
+
+const validationMessages = [
+  'Hasło musi zawierać minimum 10 znaków',
+  'Hasło musi zawierać przynajmniej jedną duzą literę',
+  'Hasło musi zawierać przynajmniej jedną cyfrę'
+]
+
+const schema = createSchema({
+  password: Yup.string().min(10, validationMessages[0]).matches(/[A-Z]/, validationMessages[1]).matches(/\d/, validationMessages[2]).required(),
+  passwordConfirmation: Yup.string().required().oneOf([
+    Yup.ref('password')
+  ])
+})
+
+const submit = createSubmitHandler(schema, (values) => {
+  console.log(values)
+})
+
 </script>
 
 <template>
@@ -15,28 +33,29 @@ definePageMeta({
     />
 
     <div class="min-w-[450px] mx-auto">
-      <UFormGroup
-        label="Nowe hasło"
-        required
-        name="password"
-        class="mb-1"
+      <Form
+        :validation-schema="schema"
+        @submit="submit"
       >
-        <UInput type="password" />
-      </UFormGroup>
-      <UFormGroup
-        label="Powtórz hasło"
-        required
-        name="password"
-      >
-        <UInput type="password" />
-      </UFormGroup>
-      <UButton
-        type="submit"
-        class="mt-12 mx-auto"
-        block
-      >
-        Zmień hasło
-      </UButton>
+        <TextField
+          placeholder="Wpisz hasło"
+          class="py-1"
+          name="password"
+          label="Hasło"
+        />
+        <TextField
+          placeholder="Powtórz hasło"
+          class="py-1"
+          name="passwordConfirmation"
+          label="Powtórz hasło"
+        />
+        <UButton
+          type="submit"
+          class="mt-20 mx-auto"
+          label="Zmień hasło"
+          block
+        />
+      </Form>
     </div>
 
     <UAlert
