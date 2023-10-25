@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const schema = createSchema({
-  email: Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail'),
+  email: useEmailValidationSchema(),
   name: Yup.string().required('Imię jest wymagane'),
   surname: Yup.string().required('Nazwisko jest wymagane'),
   password: usePasswordValidationSchema(),

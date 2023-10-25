@@ -32,3 +32,7 @@ export const usePasswordConfirmationValidationSchema = () => {
     Yup.ref('password')
   ], 'Hasła muszą być takie same')
 }
+
+export const useEmailValidationSchema = () => {
+  return Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail')
+}
