@@ -43,22 +43,10 @@ const submit = createSubmitHandler(schema, (values) => {
       <UButton
         type="submit"
         class="mt-20 mx-auto"
+        label="Zaloguj się"
         block
-      >
-        Zaloguj się
-      </UButton>
+      />
     </Form>
-    <!-- <UFormGroup label="E-mail" required name="email" class="mb-1">
-      <UInput placeholder="you@example.com" icon="i-heroicons-envelope" />
-    </UFormGroup>
-    <UFormGroup
-      label="Hasło"
-      required
-      name="password"
-      class="mb-1"
-    >
-      <UInput type="password" />
-    </UFormGroup> -->
     <UAlert
       title="Nie posiadasz konta?"
       class="mt-5"
