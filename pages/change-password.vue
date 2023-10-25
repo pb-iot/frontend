@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { usePasswordConfirmationValidationSchema } from '~/composables/yup';
-
 definePageMeta({
   layout: 'auth'
 })
