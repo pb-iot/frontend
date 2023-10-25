@@ -3,8 +3,8 @@
 const props = defineProps<TextFieldProps & {
   icon?: string
   loading?: boolean
-  trailingIcon?: string
   trailing?: boolean
+  type?: string
 }>()
 
 const name = toRef(props, 'name')
@@ -28,13 +28,10 @@ const { value, errorMessage } = useField<string>(name, undefined, {
       :disabled="disabled"
       :trailing-icon="''"
 
+      :type="type"
       :icon="icon ?? ''"
       :loading="loading"
       :trailing="trailing ?? true"
-    >
-      <!-- <template #trailing>
-        <slot name="trailing" />
-      </template> -->
-    </UInput>
+    />
   </UFormGroup>
 </template>

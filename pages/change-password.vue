@@ -1,22 +1,17 @@
 <script setup lang="ts">
+import { usePasswordConfirmationValidationSchema } from '~/composables/yup';
+
 definePageMeta({
   layout: 'auth'
 })
 
-const validationMessages = [
-  'Hasło musi zawierać minimum 10 znaków',
-  'Hasło musi zawierać przynajmniej jedną duzą literę',
-  'Hasło musi zawierać przynajmniej jedną cyfrę'
-]
-
 const schema = createSchema({
-  password: Yup.string().min(10, validationMessages[0]).matches(/[A-Z]/, validationMessages[1]).matches(/\d/, validationMessages[2]).required(),
-  passwordConfirmation: Yup.string().required().oneOf([
-    Yup.ref('password')
-  ])
+  password: usePasswordValidationSchema(),
+  passwordConfirmation: usePasswordConfirmationValidationSchema()
 })
 
 const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Wysłanie zapytania do backendu
   console.log(values)
 })
 
@@ -42,12 +37,14 @@ const submit = createSubmitHandler(schema, (values) => {
           class="py-1"
           name="password"
           label="Hasło"
+          type="password"
         />
         <TextField
           placeholder="Powtórz hasło"
           class="py-1"
           name="passwordConfirmation"
           label="Powtórz hasło"
+          type="password"
         />
         <UButton
           type="submit"

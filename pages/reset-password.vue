@@ -2,6 +2,15 @@
 definePageMeta({
   layout: 'auth'
 })
+
+const schema = createSchema({
+  email: Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail')
+})
+
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Wysłanie zapytania do backendu
+  console.log(values)
+})
 </script>
 
 <template>
@@ -12,31 +21,34 @@ definePageMeta({
       variant="soft"
       class="text-center"
     />
-    <UFormGroup
-      label="E-mail"
-      required
-      name="email"
-      class="mt-4"
+    <Form
+      :validation-schema="schema"
+      @submit="submit"
     >
-      <UInput
-        placeholder="you@example.com"
+      <TextField
+        label="E-mail"
         icon="i-heroicons-envelope"
+        :trailing="false"
+        placeholder="you@example.com"
+        name="email"
+        class="mt-4"
       />
-    </UFormGroup>
-    <div class="grid grid-cols-2 gap-x-4 mt-[4.75rem] mx-auto">
-      <UButton
-        to="/login"
-        block
-      >
-        Cofnij
-      </UButton>
-      <UButton
-        to="/reset-password-message"
-        block
-      >
-        Resetuj hasło
-      </UButton>
-    </div>
+      <div class="grid grid-cols-2 gap-x-4 mt-[4.75rem] mx-auto">
+        <UButton
+          to="/login"
+          label="Confij"
+          block
+        />
+        <!-- TODO: Gdy walidacja jest zła nie powinno przechodzić do następnego widoku -->
+        <UButton
+          to="/reset-password-message"
+          label="Resetuj hasło"
+          type="submit"
+          block
+        />
+      </div>
+    </Form>
+
     <UAlert
       title="Nie posiadasz konta?"
       class="mt-5"

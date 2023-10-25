@@ -4,11 +4,12 @@ definePageMeta({
 })
 
 const schema = createSchema({
-  email: Yup.string().required().email(),
-  password: Yup.string().min(10).required()
+  email: Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail'),
+  password: Yup.string().required('Hasło jest wymagane')
 })
 
 const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Wysłanie zapytania do backendu
   console.log(values)
 })
 
@@ -22,8 +23,10 @@ const submit = createSubmitHandler(schema, (values) => {
     >
       <TextField
         placeholder="Wpisz E-mail"
+        icon="i-heroicons-envelope"
         class="py-1"
         name="email"
+        :trailing="false"
         label="E-mail"
       />
       <div>
@@ -31,6 +34,7 @@ const submit = createSubmitHandler(schema, (values) => {
           placeholder="Wpisz hasło"
           class="py-1"
           name="password"
+          type="password"
           label="Hasło"
         />
         <ULink

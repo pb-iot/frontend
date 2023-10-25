@@ -4,16 +4,15 @@ definePageMeta({
 })
 
 const schema = createSchema({
-  email: Yup.string().required().email(),
-  name: Yup.string().required(),
-  surname: Yup.string().required(),
-  password: Yup.string().min(10).required(),
-  passwordConfirmation: Yup.string().required().oneOf([
-    Yup.ref('password')
-  ])
+  email: Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail'),
+  name: Yup.string().required('Imię jest wymagane'),
+  surname: Yup.string().required('Nazwisko jest wymagane'),
+  password: usePasswordValidationSchema(),
+  passwordConfirmation: usePasswordConfirmationValidationSchema()
 })
 
 const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Wysłanie zapytania do backendu
   console.log(values)
 })
 </script>
@@ -48,12 +47,14 @@ const submit = createSubmitHandler(schema, (values) => {
         placeholder="Wpisz hasło"
         class="py-1"
         name="password"
+        type="password"
         label="Hasło"
       />
       <TextField
         placeholder="Powtórz hasło"
         class="py-1"
         name="passwordConfirmation"
+        type="password"
         label="Powtórz hasło"
       />
       <UButton
