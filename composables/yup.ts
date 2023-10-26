@@ -21,9 +21,9 @@ export { Yup }
 
 export const usePasswordValidationSchema = () => {
   return Yup.string().min(10, 'Hasło musi zawierać minimum 10 znaków')
-    .matches(useAtLeastOneLetterUppercase(), 'Hasło musi zawierać przynajmniej jedną duzą literę')
-    .matches(useAtLeastOneDigit(), 'Hasło musi zawierać przynajmniej jedną cyfrę')
-    .matches(useAtLeastOneSpecialCharacter(), 'Hasło musi zawierać przynajmniej jeden znak specjalny')
+    .matches(AT_LEAST_ONE_LETTER_UPPERCASE_REGEXP, 'Hasło musi zawierać przynajmniej jedną duzą literę')
+    .matches(AT_LEAST_ONE_DIGIT_REGEXP, 'Hasło musi zawierać przynajmniej jedną cyfrę')
+    .matches(AT_LEAST_ONE_SPECIAL_CHARACTER_REGEXP, 'Hasło musi zawierać przynajmniej jeden znak specjalny')
     .required('Hasło jest wymagane')
 }
 
