@@ -3,8 +3,8 @@
 const props = defineProps<TextFieldProps & {
   icon?: string
   loading?: boolean
-  trailing?: boolean
   trailingIcon?: string
+  leadingIcon?: string
   type?: string
 }>()
 
@@ -27,12 +27,11 @@ const { value, errorMessage } = useField<string>(name, undefined, {
       :color="color"
       :size="size"
       :disabled="disabled"
-      :trailing-icon="trailingIcon ?? ''"
 
+      :leading-icon="leadingIcon ?? ''"
+      :trailing-icon="trailingIcon ?? ''"
       :type="type"
-      :leading-icon="icon ?? ''"
       :loading="loading"
-      :trailing="trailing ?? true"
     >
       <template #trailing>
         <slot name="trailing" />

@@ -23,10 +23,9 @@ const submit = createSubmitHandler(schema, (values) => {
     >
       <TextField
         placeholder="Wpisz E-mail"
-        icon="i-heroicons-envelope"
+        leading-icon="i-heroicons-envelope"
         class="py-1"
         name="email"
-        :trailing="false"
         label="E-mail"
       />
       <div>

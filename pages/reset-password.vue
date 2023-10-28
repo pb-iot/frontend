@@ -27,8 +27,7 @@ const submit = createSubmitHandler(schema, (values) => {
     >
       <TextField
         label="E-mail"
-        icon="i-heroicons-envelope"
-        :trailing="false"
+        leading-icon="i-heroicons-envelope"
         placeholder="you@example.com"
         name="email"
         class="mt-4"
