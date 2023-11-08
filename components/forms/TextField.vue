@@ -3,6 +3,9 @@
 const props = defineProps<TextFieldProps & {
   icon?: string
   loading?: boolean
+  trailingIcon?: string
+  leadingIcon?: string
+  type?: string
 }>()
 
 const name = toRef(props, 'name')
@@ -25,7 +28,9 @@ const { value, errorMessage } = useField<string>(name, undefined, {
       :size="size"
       :disabled="disabled"
 
-      :icon="icon ?? ''"
+      :leading-icon="leadingIcon ?? ''"
+      :trailing-icon="trailingIcon ?? ''"
+      :type="type"
       :loading="loading"
     >
       <template #trailing>

@@ -18,3 +18,21 @@ export const createSubmitHandler = <Schema extends Yup.ObjectSchema<Record<strin
 ) => (values: Record<string, any>, ctx: SubmissionContext) => callback(schema.cast(values), ctx)
 
 export { Yup }
+
+export const usePasswordValidationSchema = () => {
+  return Yup.string().min(10, 'Hasło musi zawierać minimum 10 znaków')
+    .matches(RE_UPPERCASE, 'Hasło musi zawierać przynajmniej jedną duzą literę')
+    .matches(RE_INTEGER, 'Hasło musi zawierać przynajmniej jedną cyfrę')
+    .matches(RE_SPECIAL_CHAR, 'Hasło musi zawierać przynajmniej jeden znak specjalny')
+    .required('Hasło jest wymagane')
+}
+
+export const usePasswordConfirmationValidationSchema = () => {
+  return Yup.string().required('Potwierdzenie hasła jest wymagane').oneOf([
+    Yup.ref('password')
+  ], 'Hasła muszą być takie same')
+}
+
+export const useEmailValidationSchema = () => {
+  return Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail')
+}
