@@ -25,7 +25,8 @@ definePageMeta({
     </UFormGroup>
     <div class="grid grid-cols-2 gap-x-4 mt-[4.75rem] mx-auto">
       <UButton
-        class="bg-gray-500 hover:bg-gray-700"
+        color="gray"
+        variant="soft"
         to="/login"
         block
       >
