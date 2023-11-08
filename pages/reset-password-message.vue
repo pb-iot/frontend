@@ -14,6 +14,8 @@ definePageMeta({
     />
     <div class="grid grid-cols-2 gap-x-4 mt-[9.25rem] mx-auto">
       <UButton
+        color="gray"
+        variant="soft"
         to="/reset-password"
         block
       >

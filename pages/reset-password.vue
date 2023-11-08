@@ -34,8 +34,10 @@ const submit = createSubmitHandler(schema, (values) => {
       />
       <div class="grid grid-cols-2 gap-x-4 mt-[4.75rem] mx-auto">
         <UButton
+          color="gray"
+          variant="soft"
           to="/login"
-          label="Confij"
+          label="Cofnij"
           block
         />
         <!-- TODO: Gdy walidacja jest zła nie powinno przechodzić do następnego widoku -->
@@ -47,7 +49,6 @@ const submit = createSubmitHandler(schema, (values) => {
         />
       </div>
     </Form>
-
     <UAlert
       title="Nie posiadasz konta?"
       class="mt-5"
