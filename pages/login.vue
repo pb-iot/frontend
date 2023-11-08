@@ -4,11 +4,12 @@ definePageMeta({
 })
 
 const schema = createSchema({
-  email: Yup.string().required().email(),
-  password: Yup.string().min(10).required()
+  email: useEmailValidationSchema(),
+  password: Yup.string().required('Hasło jest wymagane')
 })
 
 const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Wysłanie zapytania do backendu
   console.log(values)
 })
 
@@ -22,6 +23,7 @@ const submit = createSubmitHandler(schema, (values) => {
     >
       <TextField
         placeholder="Wpisz E-mail"
+        leading-icon="i-heroicons-envelope"
         class="py-1"
         name="email"
         label="E-mail"
@@ -31,6 +33,7 @@ const submit = createSubmitHandler(schema, (values) => {
           placeholder="Wpisz hasło"
           class="py-1"
           name="password"
+          type="password"
           label="Hasło"
         />
         <ULink
@@ -43,22 +46,10 @@ const submit = createSubmitHandler(schema, (values) => {
       <UButton
         type="submit"
         class="mt-20 mx-auto"
+        label="Zaloguj się"
         block
-      >
-        Zaloguj się
-      </UButton>
+      />
     </Form>
-    <!-- <UFormGroup label="E-mail" required name="email" class="mb-1">
-      <UInput placeholder="you@example.com" icon="i-heroicons-envelope" />
-    </UFormGroup>
-    <UFormGroup
-      label="Hasło"
-      required
-      name="password"
-      class="mb-1"
-    >
-      <UInput type="password" />
-    </UFormGroup> -->
     <UAlert
       title="Nie posiadasz konta?"
       class="mt-5"

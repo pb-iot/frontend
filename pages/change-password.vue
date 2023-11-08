@@ -2,6 +2,17 @@
 definePageMeta({
   layout: 'auth'
 })
+
+const schema = createSchema({
+  password: usePasswordValidationSchema(),
+  passwordConfirmation: usePasswordConfirmationValidationSchema()
+})
+
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Wysłanie zapytania do backendu
+  console.log(values)
+})
+
 </script>
 
 <template>
@@ -15,28 +26,31 @@ definePageMeta({
     />
 
     <div class="min-w-[450px] mx-auto">
-      <UFormGroup
-        label="Nowe hasło"
-        required
-        name="password"
-        class="mb-1"
+      <Form
+        :validation-schema="schema"
+        @submit="submit"
       >
-        <UInput type="password" />
-      </UFormGroup>
-      <UFormGroup
-        label="Powtórz hasło"
-        required
-        name="password"
-      >
-        <UInput type="password" />
-      </UFormGroup>
-      <UButton
-        type="submit"
-        class="mt-12 mx-auto"
-        block
-      >
-        Zmień hasło
-      </UButton>
+        <TextField
+          placeholder="Wpisz hasło"
+          class="py-1"
+          name="password"
+          label="Hasło"
+          type="password"
+        />
+        <TextField
+          placeholder="Powtórz hasło"
+          class="py-1"
+          name="passwordConfirmation"
+          label="Powtórz hasło"
+          type="password"
+        />
+        <UButton
+          type="submit"
+          class="mt-20 mx-auto"
+          label="Zmień hasło"
+          block
+        />
+      </Form>
     </div>
 
     <UAlert
