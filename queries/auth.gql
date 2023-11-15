@@ -1,0 +1,19 @@
+mutation register($email: String!, $name: String!, $surname: String!, $password: String!) {
+  createUser(input: {
+    email: $email, 
+    firstName: $name, 
+    lastName: $surname, 
+    password: $password
+  }) {
+    user {
+      id
+    }
+  }
+}
+
+mutation login($email: String!, $password: String!) {
+  tokenAuth(email: $email, password: $password) {
+    token
+    refreshToken
+  }
+}
