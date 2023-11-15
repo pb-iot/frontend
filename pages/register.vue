@@ -11,9 +11,16 @@ const schema = createSchema({
   passwordConfirmation: usePasswordConfirmationValidationSchema()
 })
 
-const submit = createSubmitHandler(schema, (values) => {
-  // TODO: Wysłanie zapytania do backendu
-  console.log(values)
+
+const router = useRouter()
+
+const submit = createSubmitHandler(schema, async (values) => {
+  await GqlRegister(values).catch((error) => {
+    // TODO: Add error handling
+    console.log(error)
+  })
+
+  await router.push('/login')
 })
 </script>
 

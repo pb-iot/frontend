@@ -8,9 +8,11 @@ const schema = createSchema({
   password: Yup.string().required('Hasło jest wymagane')
 })
 
-const submit = createSubmitHandler(schema, (values) => {
-  // TODO: Wysłanie zapytania do backendu
-  console.log(values)
+const submit = createSubmitHandler(schema, async (values) => {
+  await GqlLogin(values).catch((error) => {
+    // TODO: Add error handling
+    console.log(error)
+  })
 })
 
 </script>

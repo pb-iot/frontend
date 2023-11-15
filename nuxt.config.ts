@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt', 'magic-regexp/nuxt'],
+  modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt', 'magic-regexp/nuxt', 'nuxt-graphql-client'],
   ssr: false,
 
   ui: {
@@ -53,6 +53,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     api: {
       baseUrl: ''
+    },
+    public: {
+      GQL_HOST: ''
     }
   }
 })
