@@ -2,6 +2,7 @@
     "recommendations": [
         "vue.volar",
         "yoavbls.pretty-ts-errors",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "graphql.vscode-graphql"
     ]
 }
