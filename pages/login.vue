@@ -8,11 +8,16 @@ const schema = createSchema({
   password: Yup.string().required('Hasło jest wymagane')
 })
 
+const auth = useAuthStore()
+const router = useRouter()
+
 const submit = createSubmitHandler(schema, async (values) => {
-  await GqlLogin(values).catch((error) => {
-    // TODO: Add error handling
-    console.log(error)
-  })
+  await auth.login(values)
+    .then(() => router.push('/dashboard'))
+    .catch((error) => {
+      // TODO: Add error handling
+      console.log(error)
+    })
 })
 
 </script>

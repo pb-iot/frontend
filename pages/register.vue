@@ -12,15 +12,16 @@ const schema = createSchema({
 })
 
 
+const auth = useAuthStore()
 const router = useRouter()
 
 const submit = createSubmitHandler(schema, async (values) => {
-  await GqlRegister(values).catch((error) => {
-    // TODO: Add error handling
-    console.log(error)
-  })
-
-  await router.push('/login')
+  await auth.register(values)
+    .then(() => router.push('/dashboard'))
+    .catch((error) => {
+      // TODO: Add error handling
+      console.log(error)
+    })
 })
 </script>
 
