@@ -11,7 +11,6 @@ const schema = createSchema({
   passwordConfirmation: usePasswordConfirmationValidationSchema()
 })
 
-
 const auth = useAuthStore()
 const router = useRouter()
 
