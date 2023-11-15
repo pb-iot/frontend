@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 
   components: [
     { path: '~/components/forms', pathPrefix: false },
-    '~components'
+    '~/components'
   ],
 
   imports: {
@@ -51,9 +51,6 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    api: {
-      baseUrl: ''
-    },
     public: {
       GQL_HOST: ''
     }

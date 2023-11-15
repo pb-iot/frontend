@@ -1,37 +1,36 @@
 export const useAuthStore = defineStore('auth', () => {
-  const token = ref('')
-  const user = ref<User | null>(null)
+  const token = useLocalStorage('auth:token', '')
+  const refreshToken = useLocalStorage('auth:refreshToken', '')
 
-  const login = async (username: string, password: string) => {
-    const data = await $fetchAPI<{ token: string, user: User }>('/login', {
-      method: 'POST',
-      body: { username, password }
-    })
+  const gql = useGql()
 
+  const login = async (credentials) => {
+    const { tokenAuth: data } = await gql('login', credentials)
     token.value = data.token
-    user.value = data.user
+    refreshToken.value = data.refreshToken
   }
 
-  const register = async (username: string, password: string) => {
-    const data = await $fetchAPI<{ token: string, user: User }>('/register', {
-      method: 'POST',
-      body: { username, password }
-    })
-
-    token.value = data.token
-    user.value = data.user
+  const register = async (data) => {
+    const result = await gql('register', data)
+    await login(data)
   }
 
   const logout = () => {
     token.value = ''
-    user.value = null
   }
+
+  watchEffect(() => {
+    if (token.value === '') return
+    useGqlToken(token.value)
+  })
+
+  const isLoggedIn = computed(() => token.value !== '')
 
   return {
     login,
     logout,
     register,
-    user
+    isLoggedIn
   }
 })
 
