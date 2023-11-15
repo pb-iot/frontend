@@ -2,16 +2,14 @@ export const useAuthStore = defineStore('auth', () => {
   const token = useLocalStorage('auth:token', '')
   const refreshToken = useLocalStorage('auth:refreshToken', '')
 
-  const gql = useGql()
-
   const login = async (credentials) => {
-    const { tokenAuth: data } = await gql('login', credentials)
+    const { tokenAuth: data } = await GqlLogin(credentials)
     token.value = data.token
     refreshToken.value = data.refreshToken
   }
 
   const register = async (data) => {
-    const result = await gql('register', data)
+    await GqlRegister(data)
     await login(data)
   }
 

@@ -25,20 +25,19 @@ const links2 = [{
 
 <template>
   <div class="grid grid-cols-[300px,1fr] grid-rows-[auto,1fr] bg-gray-100 h-screen">
+    <!-- arrow -->
+    <div class="flex justify-end border-b border-gray-400 bg-white">
+      <UButton
+        class="mr-1 px-3"
+        color="gray"
+        size="l"
+        variant="ghost"
+      >
+        <i class="i-heroicons-arrow-left-solid text-4xl text-gray-400" />
+      </UButton>
+    </div>
 
-  <!-- arrow -->
-  <div class="flex justify-end border-b border-gray-400 bg-white">
-    <UButton
-      class="mr-1 px-3"
-      color="gray"
-      size="l"
-      variant="ghost"
-    >
-      <i class="i-heroicons-arrow-left-solid text-4xl text-gray-400" />
-    </UButton>
-  </div>
-
-  <!-- Semi-transparent bar at the top -->
+    <!-- Semi-transparent bar at the top -->
     <div class="sticky top-0 z-10 flex items-center py-2 bg-opacity-40 backdrop-blur-xl bg-gray-100/80">
       <img
         src="~/public/logo.png"
@@ -63,8 +62,7 @@ const links2 = [{
         </UButton>
       </div>
     </div>
-    
-    
+
     <!-- Column 1 (200px fixed width) -->
     <div class="flex flex-col bg-white">
       <div class="border-b border-gray-400">
