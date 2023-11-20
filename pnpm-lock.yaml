@@ -20,8 +20,8 @@ dependencies:
 
 devDependencies:
   '@iconify/json':
-    specifier: ^2.2.142
-    version: 2.2.142
+    specifier: ^2.2.143
+    version: 2.2.143
   '@nuxt/devtools':
     specifier: latest
     version: 1.0.2(nuxt@3.8.1)(vite@4.5.0)
@@ -941,8 +941,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify/json@2.2.142:
-    resolution: {integrity: sha512-EfQv1GMGxOySdwaGR3+Diqudkwk4W299cNtcQhg7QAlH9x6FW9851raiYvdOsMZp0ya+Ye+evTTqxyZ4vEh5cw==}
+  /@iconify/json@2.2.143:
+    resolution: {integrity: sha512-gwZmSttIFjhTVqbfV0lTqxCCPfZqI01YI9hSmSm3JGQVRIrzwEuOSe8YElyeWQikhGUoMj6R2mE7Vlw48yWstw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1
