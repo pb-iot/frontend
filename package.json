@@ -15,7 +15,6 @@
     "@iconify/json": "^2.2.169",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/test-utils": "^3.8.0",
     "@nuxt/ui": "npm:@nuxt/ui-edge@latest",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@pinia/nuxt": "^0.5.1",
