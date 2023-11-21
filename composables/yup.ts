@@ -36,3 +36,9 @@ export const usePasswordConfirmationValidationSchema = () => {
 export const useEmailValidationSchema = () => {
   return Yup.string().required('E-mail jest wymagany').email('Niepoprawny adres e-mail')
 }
+
+export const useGreenhouseNameValidationSchema = () => {
+  return Yup.string().min(2, 'Nazwa musi składać się z przynajmniej dwóch znaków')
+    .matches(RE_NEW_GRHOUSE_NAME.value, 'Podana nazwa już istnieje')
+    .required('Nazwa jest wymagana')
+}

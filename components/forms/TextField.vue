@@ -6,6 +6,7 @@ const props = defineProps<TextFieldProps & {
   trailingIcon?: string
   leadingIcon?: string
   type?: string
+  required?: boolean
 }>()
 
 const name = toRef(props, 'name')
@@ -20,6 +21,7 @@ const { value, errorMessage } = useField<string>(name, undefined, {
     :label="label"
     :error="errorMessage"
     :help="help"
+    :required="required ?? false"
   >
     <UInput
       v-model="value"
