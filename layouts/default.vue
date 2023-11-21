@@ -18,7 +18,8 @@ const links2 = [{
   icon: 'i-heroicons-list-bullet'
 }, {
   label: 'Dodaj szklarnię',
-  icon: 'i-heroicons-plus-circle-solid'
+  icon: 'i-heroicons-plus-circle-solid',
+  to: '/greenhouse/add-new'
 }
 ]
 </script>
