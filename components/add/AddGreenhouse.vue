@@ -40,7 +40,7 @@ interface Link {
 
 // NOTE: add vertical navigation for adding element to the greenhouse
 const selectedLink = ref<string | undefined>('')
-const addGreenhouseElementsLinks = [{
+const addGreenhouseElementsLinks = reactive([{
   label: 'Dodaj użytkowników',
   to: undefined,
   icon: 'i-heroicons-plus-circle-20-solid',
@@ -61,7 +61,7 @@ const addGreenhouseElementsLinks = [{
   click: () => {
     selectedLink.value = 'Docelowe środowisko szklarni'
   }
-}]
+}])
 
 // NOTE: Define event to send which nav has been clicked
 const emit = defineEmits<{
