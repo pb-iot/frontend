@@ -66,7 +66,7 @@ watch(selectedLinkIndex, () => {
 // NOTE: when popover is closed we want to clear all the data that makes links selected
 // because on the close any of them should be selected
 watch(open, () => {
-  if (!open.value && selectedLinkIndex.value) {
+  if (!open.value && selectedLinkIndex.value !== undefined) {
     selectedLinkIndex.value = undefined
     for (let i = 0; i < links.length; ++i) links[i].to = undefined
   }
@@ -91,6 +91,15 @@ onClickOutside(popoverTarget, async () => {
     selectedLinkIndex.value = undefined
   }
 })
+
+const closePopover = (close: () => void) => {
+  close()
+  open.value = false
+  if (selectedLinkIndex.value) {
+    links[selectedLinkIndex.value].to = undefined
+    selectedLinkIndex.value = undefined
+  }
+}
 
 const assignedUsers: User[] = []
 
@@ -142,7 +151,7 @@ const assignedUsers: User[] = []
             />
           </div>
 
-          <template #panel>
+          <template #panel="{ close }">
             <div
               ref="popoverTarget"
               class="absolute bot-10 w-48 h-[5.0rem] bg-white text-md rounded-lg shadow-lg border-1 text-gray-600 text-md"
@@ -150,13 +159,22 @@ const assignedUsers: User[] = []
                 bottom: `${currentBottom}rem`
               }"
             >
-              <div class="px-4 pt-1 hover:bg-gray-300 rounded-t-lg cursor-default hover:cursor-pointer">
+              <div
+                class="px-4 pt-1 hover:bg-gray-300 rounded-t-lg cursor-default hover:cursor-pointer"
+                @click="closePopover(close)"
+              >
                 Dodaj jako właściciel
               </div>
-              <div class="px-4 hover:bg-gray-300 cursor-default hover:cursor-pointer">
+              <div
+                class="px-4 hover:bg-gray-300 cursor-default hover:cursor-pointer"
+                @click="closePopover(close)"
+              >
                 Dodaj jako pracownik
               </div>
-              <div class="px-4 pb-1 hover:bg-gray-300 rounded-b-lg cursor-default hover:cursor-pointer">
+              <div
+                class="px-4 pb-1 hover:bg-gray-300 rounded-b-lg cursor-default hover:cursor-pointer"
+                @click="closePopover(close)"
+              >
                 Dodaj jako obserwator
               </div>
             </div>
