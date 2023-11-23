@@ -130,7 +130,7 @@ const submitBtn = ref()
             :options="locationOptions"
             required
           />
-          <div class="pl-3 pt-6">
+          <div class="pl-1 pt-6">
             <UButton
               label="Dodaj nową lokację"
               size="xs"
