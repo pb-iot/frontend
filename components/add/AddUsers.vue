@@ -29,7 +29,7 @@ interface UserLink {
 }
 
 // NOTE: Popover open variable
-const open = ref(false)
+const open = ref<boolean | undefined>(false)
 const currentBottom = ref(0)
 const selectedLinkIndex = ref<number | undefined>(undefined)
 const links: UserLink[] = reactive(users.map((user, index) => {
@@ -39,29 +39,59 @@ const links: UserLink[] = reactive(users.map((user, index) => {
     icon: 'i-heroicons-plus-circle-20-solid',
     iconClass: 'ml-auto',
     click: () => {
-      selectedLinkIndex.value = index
+      // NOTE: We shouldn't be here when popover is opened, because the first click
+      // should close the previous popover
+      if (open.value) return
 
-      // NOTE: opens popup
-      open.value = true
+      // NOTE: From here we make this link selected(goes to watch) when its popover will be opened
+      selectedLinkIndex.value = index
 
       // NOTE: computing how far from the bottom should be popover with absolute positioning
       const remValue = ((users.length - index - 1) * ONE_USER_HEIGHT_REM) - 4.25
-      console.log('dla indeksu ' + index)
-      console.log('wartosc ' + remValue)
       currentBottom.value = remValue
+
+      // NOTE: opens popover
+      open.value = true
     }
   }
 
   return link
 }))
 
+// NOTE: Make link selected
 watch(selectedLinkIndex, () => {
   if (selectedLinkIndex.value !== undefined) links[selectedLinkIndex.value].to = '/greenhouse/add-new'
 })
 
+// NOTE: when popover is closed we want to clear all the data that makes links selected
+// because on the close any of them should be selected
 watch(open, () => {
-  for (let i = 0; i < links.length && open.value === false; ++i) links[i].to = undefined
+  if (!open.value && selectedLinkIndex.value) {
+    selectedLinkIndex.value = undefined
+    for (let i = 0; i < links.length; ++i) links[i].to = undefined
+  }
 })
+
+/* NOTE: this function checks if mouse is clicked outside the popover,
+popover by default closes when you click outside of it, but
+at first - it doesn't change the open.value to false
+at second - mouse can be clicked on the link and we don't want to
+select another links while popover is opened
+so we need to tell to program that popover should be closed
+and this operation should be done at the end to clear the data
+so its why author of the code used setTimeout */
+const popoverTarget = ref(null)
+onClickOutside(popoverTarget, async () => {
+  setTimeout(() => {
+    if (open.value) open.value = false
+  }, 200)
+
+  if (selectedLinkIndex.value !== undefined) {
+    links[selectedLinkIndex.value].to = undefined
+    selectedLinkIndex.value = undefined
+  }
+})
+
 const assignedUsers: User[] = []
 
 </script>
@@ -94,7 +124,7 @@ const assignedUsers: User[] = []
     <template #footer>
       <div class="relative">
         <UPopover
-          :open="open"
+          v-model="open"
         >
           <div class="min-w-full">
             <UVerticalNavigation
@@ -114,6 +144,7 @@ const assignedUsers: User[] = []
 
           <template #panel>
             <div
+              ref="popoverTarget"
               class="absolute bot-10 w-48 h-[5.0rem] bg-white text-md rounded-lg shadow-lg border-1 text-gray-600 text-md"
               :style="{
                 bottom: `${currentBottom}rem`
