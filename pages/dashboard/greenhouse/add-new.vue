@@ -16,8 +16,8 @@ const updateElementType = (type: string) => {
       <div class="py-20">
         <AddUsers
           v-if="addingGreenhouseElementType === 'Dodaj użytkowników'"
-          class=""
         />
+        <AddGreenhouseDevices v-if="addingGreenhouseElementType === 'Dodaj urządzenia szklarni'" />
       </div>
     </div>
   </div>
