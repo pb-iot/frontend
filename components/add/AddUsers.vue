@@ -154,7 +154,7 @@ const assignedUsers: User[] = []
           <template #panel="{ close }">
             <div
               ref="popoverTarget"
-              class="absolute bot-10 w-48 h-[5.0rem] bg-white text-md rounded-lg shadow-lg border-1 text-gray-600 text-md"
+              class="absolute bot-10 w-52 h-[5.0rem] bg-white text-md rounded-lg shadow-lg border-1 text-gray-600 text-md"
               :style="{
                 bottom: `${currentBottom}rem`
               }"
