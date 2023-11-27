@@ -8,8 +8,8 @@ export const RE_SPECIAL_CHAR = createRegExp(
     .and(charIn(SPECIAL_CHARS))
 )
 
-// TODO: Fetch the data from the data base for comparing names of the greenhouses
-const greenhousesNames = reactive(['Nazwa1', 'Nazwa2', 'Nazwa2'])
-export const RE_NEW_GRHOUSE_NAME = ref(createRegExp(
+// TODO: Fetch the data from the database for comparing names of the greenhouses
+const greenhousesNames = ['Nazwa1', 'Nazwa2', 'Nazwa2']
+export const RE_NEW_GRHOUSE_NAME = createRegExp(
   exactly(greenhousesNames[0])
-))
+)

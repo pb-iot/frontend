@@ -39,29 +39,17 @@ interface Link {
 }
 
 // NOTE: add vertical navigation for adding element to the greenhouse
-const selectedLink = ref<string | undefined>('')
-const addGreenhouseElementsLinks = reactive([{
+const addGreenhouseElementsLinks = [{
   label: 'Dodaj użytkowników',
-  to: undefined,
   icon: 'i-heroicons-plus-circle-20-solid',
-  click: () => {
-    selectedLink.value = 'Dodaj użytkowników'
-  }
 }, {
   label: 'Dodaj urządzenia szklarni',
-  to: undefined,
   icon: 'i-heroicons-plus-circle-20-solid',
-  click: () => {
-    selectedLink.value = 'Dodaj urządzenia szklarni'
-  }
 }, {
   label: 'Docelowe środowisko szklarni',
-  to: undefined,
   icon: 'i-heroicons-plus-circle-20-solid',
-  click: () => {
-    selectedLink.value = 'Docelowe środowisko szklarni'
-  }
-}])
+}] as const
+const selectedLink = ref<typeof addGreenhouseElementsLinks[number]['label']>()
 
 // NOTE: Define event to send which nav has been clicked
 const emit = defineEmits<{
@@ -147,7 +135,18 @@ const submitBtn = ref()
       </Form>
     </div>
     <div class="border-t-2 border-gray-200 px-4 py-6">
-      <UVerticalNavigation :links="addGreenhouseElementsLinks" />
+      <UButton
+        v-for="link in addGreenhouseElementsLinks"
+        :key="link.label"
+        @click="selectedLink = link.label"
+        :icon="link.icon"
+        :label="link.label"
+        variant="ghost"
+        color="gray"
+        class="justify-start"
+        block
+        :class="[selectedLink === link.label && '!bg-gray-100 !text-gray-900']"
+      />
     </div>
     <!-- Miejsce na mape -->
     <template #footer>
