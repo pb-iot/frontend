@@ -9,8 +9,10 @@
   >
     <template #header>
       <div class="flex items-center font-bold text-gray-400">
-        <svg-icon type="mdi" path="mdi-barley"></svg-icon>
-        <TitleIcon icon="mdi-barley" />
+        <UIcon 
+          name="mdi-barley"
+          class="w-12 h-12 mx-2"
+        />
         Użytkownicy
       </div>
     </template>

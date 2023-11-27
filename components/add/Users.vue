@@ -112,7 +112,10 @@ const assignedUsers: User[] = []
   >
     <template #header>
       <div class="flex items-center font-bold text-gray-400">
-        <TitleIcon icon="i-heroicons-user-group-solid" />
+        <UIcon 
+          name="i-heroicons-user-group-solid"
+          class="w-12 h-12 mx-2"
+        />
         Użytkownicy
       </div>
     </template>
