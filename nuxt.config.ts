@@ -52,7 +52,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      GQL_HOST: ''
+      GQL_HOST: '',
+      MAPBOX_TOKEN: ''
     }
   }
 })

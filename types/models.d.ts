@@ -5,3 +5,8 @@ declare interface User {
   type: string
   // NOTE: can be extended in the future
 }
+
+interface Location {
+  lng: number
+  lat: number
+}
