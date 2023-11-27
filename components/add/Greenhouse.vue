@@ -5,6 +5,13 @@ interface Map {
   code: String
 }
 
+const locations = [
+  {
+    lng: 23.342342,
+    lat: 53.342342,
+  }
+]
+
 // locationOptions for now when we don't use library to choose location
 // TODO: Add locationOptions and map
 const locationOptions: SelectFieldOption[] = [{
@@ -34,8 +41,7 @@ const locationOptions: SelectFieldOption[] = [{
 
 interface Link {
   label: string
-  to: string | undefined
-  click: () => void
+  icon: string
 }
 
 // NOTE: add vertical navigation for adding element to the greenhouse
@@ -59,10 +65,7 @@ const emit = defineEmits<{
 watch(selectedLink, () => {
   addGreenhouseElementsLinks.forEach((link: Link) => {
     if (link.label === selectedLink.value) {
-      link.to = '/greenhouse/add-new'
       emit('openFormToAddNewElement', link.label)
-    } else {
-      link.to = undefined
     }
   })
 })
@@ -81,21 +84,18 @@ const submitBtn = ref()
 </script>
 
 <template>
-  <UCard
-    :ui="{ body: { padding: ''}}"
-    class="w-96"
-  >
+  <UCard :ui="{ body: { padding: ''}}">
     <template #header>
       <div>Nowa szklarnia</div>
     </template>
-    <div class="px-4 py-5 sm:p-6">
+    <div class="px-4 pt-5 sm:p-6 sm:pb-0">
       <Form
         :validation-schema="schema"
         @submit="submit"
       >
         <TextField
           placeholder="Wpisz nazwę"
-          class="py-1"
+          class="py-2"
           name="greenhouseName"
           label="Nazwa szklarni"
           required
@@ -103,29 +103,26 @@ const submitBtn = ref()
 
         <TextField
           placeholder="Wpisz rodzaj uprawy"
-          class="py-1"
+          class="py-2"
           name="typeOfCrop"
           label="Rodzaj uprawy"
           required
         />
         <!-- Add map -->
-        <div class="flex items-center">
+        <div class="flex items-end gap-4 py-2">
           <SelectMenuField
-            class="w-44"
-            label="Lokalizacja:)"
+            class="flex-1"
+            label="Lokalizacja"
             name="location"
             icon="i-heroicons-map-pin-20-solid"
             :options="locationOptions"
             required
           />
-          <div class="pl-1 pt-6">
-            <UButton
-              label="Dodaj nową lokację"
-              size="xs"
-              color="gray"
-              icon="i-heroicons-plus-circle-20-solid"
-            />
-          </div>
+          <UButton
+            label="Dodaj nową lokację"
+            color="gray"
+            icon="i-heroicons-plus-circle-20-solid"
+          />
         </div>
         <button
           ref="submitBtn"
@@ -134,6 +131,11 @@ const submitBtn = ref()
         />
       </Form>
     </div>
+    <Map 
+      class="h-64 mx-4 mb-6 mt-2"
+      :locations="locations"
+    />
+
     <div class="border-t-2 border-gray-200 px-4 py-6">
       <UButton
         v-for="link in addGreenhouseElementsLinks"
@@ -148,20 +150,21 @@ const submitBtn = ref()
         :class="[selectedLink === link.label && '!bg-gray-100 !text-gray-900']"
       />
     </div>
-    <!-- Miejsce na mape -->
     <template #footer>
-      <div class="flex justify-center">
+      <div class="grid grid-cols-2">
         <UButton
           color="red"
           class="px-16 mr-2"
           variant="soft"
           label="Anuluj"
+          block
         />
         <UButton
           class="ml-2 px-[33.35px]"
           :ui="{ base:'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0' }"
           label="Zapisz szklarnię"
           @click="submitBtn.click()"
+          block
         />
       </div>
     </template>

@@ -2,16 +2,16 @@
 const links = [{
   label: 'Moje szklarnie',
   icon: 'i-heroicons-map-pin-solid',
-  to: '/'
+  to: '/dashboard'
 }, {
   label: 'Moje lokalizacje',
   // placeholder bo nie wiem skad wziac ikonke szklarni
   icon: 'i-heroicons-building-storefront-solid',
-  to: '/'
+  to: '/dashboard'
 }, {
   label: 'Mój profil',
   icon: 'i-heroicons-user-circle-solid',
-  to: '/'
+  to: '/dashboard'
 }]
 const links2 = [{
   label: 'Lista szklarni',
@@ -19,7 +19,7 @@ const links2 = [{
 }, {
   label: 'Dodaj szklarnię',
   icon: 'i-heroicons-plus-circle-solid',
-  to: '/greenhouse/add-new'
+  to: '/dashboard/greenhouse/add-new'
 }
 ]
 </script>

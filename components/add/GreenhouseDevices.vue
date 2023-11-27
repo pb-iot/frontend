@@ -3,10 +3,7 @@
 </script>
 
 <template>
-<UCard
-    :ui="{ body: { padding: ''}}"
-    class="w-96"
-  >
+<UCard :ui="{ body: { padding: ''}}">
     <template #header>
       <div class="flex items-center font-bold text-gray-400">
         <UIcon 
