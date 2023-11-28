@@ -48,7 +48,7 @@ const dropdownItems = ({ user }: typeof links[number]) => [
   <UCard :ui="{ body: { padding: ''}}">
     <template #header>
       <div class="flex items-center font-bold text-gray-400">
-        <UIcon 
+        <UIcon
           name="i-heroicons-user-group-solid"
           class="w-12 h-12 mx-2"
         />
@@ -61,7 +61,10 @@ const dropdownItems = ({ user }: typeof links[number]) => [
     >
       Przypisz użytkowników
     </div>
-    <div v-else>
+    <div
+      v-else
+      class="px-8 py-5 font-bold text-gray-600 dark:text-gray-400"
+    >
       <div
         v-for="user in assignedUsers"
         :key="user.id"
@@ -71,7 +74,7 @@ const dropdownItems = ({ user }: typeof links[number]) => [
     </div>
     <template #footer>
       <div class="relative">
-        <UDropdown 
+        <UDropdown
           v-for="link in links"
           :key="link.label"
           :items="dropdownItems(link)"

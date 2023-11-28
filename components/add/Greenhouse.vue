@@ -8,7 +8,7 @@ interface Map {
 const locations = [
   {
     lng: 23.342342,
-    lat: 53.342342,
+    lat: 53.342342
   }
 ]
 
@@ -31,9 +31,9 @@ const locationOptions: SelectFieldOption[] = [{
   } as Map
 },
 {
-  label: 'Obi-wana Kenobiego 69, 12-800 Poznań',
+  label: 'Obi-wana Kenobiego 9, 12-800 Poznań',
   value: {
-    street: 'Obi-wana Kenobiego 69',
+    street: 'Obi-wana Kenobiego 9',
     city: 'Poznań',
     code: '12-800'
   } as Map
@@ -47,13 +47,13 @@ interface Link {
 // NOTE: add vertical navigation for adding element to the greenhouse
 const addGreenhouseElementsLinks = [{
   label: 'Dodaj użytkowników',
-  icon: 'i-heroicons-plus-circle-20-solid',
+  icon: 'i-heroicons-plus-circle-20-solid'
 }, {
   label: 'Dodaj urządzenia szklarni',
-  icon: 'i-heroicons-plus-circle-20-solid',
+  icon: 'i-heroicons-plus-circle-20-solid'
 }, {
   label: 'Docelowe środowisko szklarni',
-  icon: 'i-heroicons-plus-circle-20-solid',
+  icon: 'i-heroicons-plus-circle-20-solid'
 }] as const
 const selectedLink = ref<typeof addGreenhouseElementsLinks[number]['label']>()
 
@@ -84,7 +84,10 @@ const submitBtn = ref()
 </script>
 
 <template>
-  <UCard :ui="{ body: { padding: ''}}">
+  <UCard
+    class="sticky top-[112px] w-full h-[804px]"
+    :ui="{ body: { padding: ''}}"
+  >
     <template #header>
       <div>Nowa szklarnia</div>
     </template>
@@ -131,7 +134,7 @@ const submitBtn = ref()
         />
       </Form>
     </div>
-    <Map 
+    <Map
       class="h-64 mx-4 mb-6 mt-2"
       :locations="locations"
     />
@@ -140,7 +143,6 @@ const submitBtn = ref()
       <UButton
         v-for="link in addGreenhouseElementsLinks"
         :key="link.label"
-        @click="selectedLink = link.label"
         :icon="link.icon"
         :label="link.label"
         variant="ghost"
@@ -148,6 +150,7 @@ const submitBtn = ref()
         class="justify-start"
         block
         :class="[selectedLink === link.label && '!bg-gray-100 !text-gray-900']"
+        @click="selectedLink = link.label"
       />
     </div>
     <template #footer>
@@ -163,8 +166,8 @@ const submitBtn = ref()
           class="ml-2 px-[33.35px]"
           :ui="{ base:'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0' }"
           label="Zapisz szklarnię"
-          @click="submitBtn.click()"
           block
+          @click="submitBtn.click()"
         />
       </div>
     </template>
