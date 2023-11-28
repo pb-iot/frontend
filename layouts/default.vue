@@ -1,4 +1,6 @@
-<script setup>
+<script setup lang="ts">
+import { useColorMode } from '@vueuse/core'
+
 const links = [{
   label: 'Moje szklarnie',
   icon: 'i-heroicons-map-pin-solid',
@@ -22,6 +24,8 @@ const links2 = [{
   to: '/dashboard/greenhouse/add-new'
 }
 ]
+
+const colorMode = useColorMode()
 </script>
 
 <template>
@@ -31,7 +35,7 @@ const links2 = [{
       <UButton
         class="mr-1 px-3"
         color="gray"
-        size="l"
+        size="lg"
         variant="ghost"
       >
         <i class="i-heroicons-arrow-left-solid text-4xl text-gray-400" />
@@ -45,8 +49,15 @@ const links2 = [{
         alt="Logo"
         class="h-16"
       >
+      <UButton
+        class="ml-auto"
+        variant="soft"
+        color="gray"
+        :icon="colorMode === 'light' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
+        @click="colorMode = colorMode === 'light' ? 'dark' : 'light'"
+      />
       <UAvatar
-        class="ml-auto mr-4"
+        class="mx-4"
         size="lg"
         src="https://avatars.githubusercontent.com/u/739984?v=4"
         alt="Avatar"
@@ -65,7 +76,7 @@ const links2 = [{
     </div>
 
     <!-- Column 1 (200px fixed width) -->
-    <div class="flex flex-col bg-white">
+    <div class="flex flex-col bg-white h-full">
       <div class="border-b border-gray-400">
         <UVerticalNavigation
           :links="links"
@@ -78,7 +89,7 @@ const links2 = [{
     </div>
 
     <!-- Column 2 (1fr width, flexible) -->
-    <div class="relative py-8 px-4">
+    <div class="relative py-8 px-4 ">
       <NuxtPage />
     </div>
   </div>
