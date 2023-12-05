@@ -1,4 +1,13 @@
 <script setup lang="ts">
+// TODO: ADD VALIDATION
+defineProps<{
+    // TODO: Use `User` type
+    user: {
+        firstname: string
+        lastname: string
+        avatar: string
+    }
+}>()
 const people = [
   {
     id: 'editData',
@@ -22,31 +31,22 @@ const people = [
     icon: 'i-heroicons-trash-solid'
   }
 ]
+const confirm = () => console.log('confirm')
+const cancel = () => console.log('cancel')
 </script>
 
 <template>
-  <div class="password-change-field bg-white border border-gray-300 rounded p-4">
-    <div class="flex items-center justify-between mb-4 h-20">
-      <div class="flex items-center">
-        <UAvatar
-          class="mr-2"
-          size="2xl"
-          src="https://avatars.githubusercontent.com/u/739984?v=4"
-          alt="Avatar"
-        />
-        <p class="text-lg font-semibold">
-          Profil
-        </p>
-      </div>
+  <ProfileCard
+    :user="user"
+  >
+    <template #options>
       <USelectMenu
-        class="w-1/3"
         placeholder="Opcje"
         :options="people"
       />
-    </div>
-
+    </template>
     <!-- Personal Information -->
-    <div class="min-w-[450px] -mx-4 border-t border-b py-4">
+    <div class="-mx-4">
       <div class="mx-5">
         <div class="flex items-center">
           <p class="font-semibold mr-2">
@@ -69,7 +69,7 @@ const people = [
       </div>
     </div>
     <!-- Greenhouse Details -->
-    <div class="min-w-[450px] -mx-4  py-4">
+    <div class="-mx-4  py-4">
       <div class="mx-9">
         <div class="flex items-center">
           <p class="mr-2">
@@ -91,5 +91,6 @@ const people = [
         </div>
       </div>
     </div>
-  </div>
+    <!-- Data change form -->
+  </ProfileCard>
 </template>

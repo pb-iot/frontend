@@ -20,10 +20,10 @@ const cancel = () => console.log('cancel')
     @cancel="cancel"
   >
     <!-- Password change form -->
-    <div class="min-w-[450px] -mx-4 border-t border-b ">
+    <div class="-mx-4">
       <Form
         :validation-schema="schema"
-        class="mx-5 my-2"
+        class="mx-5"
         @submit="submit"
       >
         <!-- Password fields without stars -->

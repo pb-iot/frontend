@@ -1,11 +1,12 @@
+<script setup lang="ts">
+</script>
 <template>
-  <UAlert
-    class="border-b-4 border-red-500"
-    :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'gray', variant: 'link', padded: false }"
+  <AlertDeleteCard
     :actions="[{ variant: 'outline', color: 'red', label: 'Usuń moje konto' }, { variant: 'solid', color: 'red', label: 'Anuluj usunięcie konta' }]"
-    title="Aby usunąć konto, podaj swoje hasło"
-    icon="i-heroicons-exclamation-circle-solid"
   >
+    <template #title>
+      Aby usunąć konto, podaj swoje hasło
+    </template>
     <template #description>
       <Form>
         <TextField
@@ -24,5 +25,6 @@
         />
       </Form>
     </template>
-  </UAlert>
+    <template #actions />
+  </AlertDeleteCard>
 </template>

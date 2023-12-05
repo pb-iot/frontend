@@ -1,20 +1,20 @@
 <script setup lang="ts">
 defineProps<{
-    // TODO: Use `User` type
-    user: {
-        firstname: string
-        lastname: string
-        avatar: string
-    }
-    onCancel?:() => void | Promise<void>
-    onConfirm?: () => void | Promise<void>
+  // TODO: Use `User` type
+  user: {
+    firstname: string
+    lastname: string
+    avatar: string
+  }
+  onCancel?:() => void | Promise<void>
+  onConfirm?: () => void | Promise<void>
 }>()
 </script>
 
 <template>
   <UCard>
     <template #header>
-      <div class="flex items-center mb-4 h-20">
+      <div class="flex items-center mb-4 mt-2 h-6">
         <UAvatar
           class="mr-2"
           size="2xl"
@@ -24,6 +24,9 @@ defineProps<{
         <p class="text-lg font-semibold">
           {{ user.firstname }} {{ user.lastname }}
         </p>
+        <div class="flex ml-auto">
+          <slot name="options" />
+        </div>
       </div>
     </template>
 

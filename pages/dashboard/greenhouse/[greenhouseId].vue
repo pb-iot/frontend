@@ -16,6 +16,7 @@ const user = {
     <div>
       <h1>My Greenhouse: {{ id }}</h1>
       <ProfileChangePassword :user="user" />
-    </div>
+      <AlertDeleteAccountEnterPassword/>
+      </div>
   </div>
 </template>
