@@ -33,6 +33,6 @@
     "@vee-validate/yup": "^4.12.2",
     "magic-regexp": "^0.7.0",
     "nuxt-graphql-client": "^0.2.31",
-    "yup": "^1.3.2"
+    "yup": "^1.3.3"
   }
 }
