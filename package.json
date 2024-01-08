@@ -12,7 +12,7 @@
     "lint": "eslint '**/*.{js,cjs,mjs,ts,vue}'"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.153",
+    "@iconify/json": "^2.2.166",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/test-utils": "^3.8.0",
