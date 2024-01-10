@@ -10,3 +10,10 @@ interface Location {
   lng: number
   lat: number
 }
+
+interface Device {
+  id: number,
+  name: string,
+  brand: string,
+  type: string
+}
