@@ -1,6 +1,9 @@
 <script setup lang="ts">
 // TODO: Fetch users from the database
 // NOTE: Example users
+const emit = defineEmits<{
+  updateAssignedUsers: [id: User[]]
+}>()
 const users: User[] = [{
   id: 1,
   name: 'Jan',
@@ -25,20 +28,52 @@ const links = users.map((user) => ({
 }))
 
 const assignedUsers = reactive<User[]>([])
+const addUserToAssignedUsers = (user: User) => {
+  let indexOfUserInArray = -1
+  for (let i = 0; i < assignedUsers.length; ++i) {
+    if (assignedUsers[i].id === user.id) {
+      indexOfUserInArray = i
+
+      // if (assignedUsers[i].type === user.type) return
+      break
+    }
+  }
+
+  if (indexOfUserInArray !== -1) {
+    // NOTE: Jak zrobiłem assignedUsers.splice(indexOfUserInArray, 1, user), to v-for nie wykrywał update - nie wiem czy nie zgłosić tego na stronie vue
+    assignedUsers.splice(indexOfUserInArray, 1)
+    assignedUsers.splice(indexOfUserInArray, 0, user)
+  } else {
+    assignedUsers.push(user)
+  }
+
+  emit('updateAssignedUsers', assignedUsers)
+}
 
 const dropdownItems = ({ user }: typeof links[number]) => [
   [
     {
       label: 'Dodaj jako właściciel',
-      click: () => assignedUsers.push(user)
+      click: () => {
+        user.type = 'Właściciel'
+        addUserToAssignedUsers(user)
+      }
     },
     {
       label: 'Dodaj jako pracownik',
-      click: () => assignedUsers.push(user)
+      click: () => {
+        user.type = 'Pracownik'
+        addUserToAssignedUsers(user)
+        emit('updateAssignedUsers', assignedUsers)
+      }
     },
     {
       label: 'Dodaj jako obserwator',
-      click: () => assignedUsers.push(user)
+      click: () => {
+        user.type = 'Obserwator'
+        addUserToAssignedUsers(user)
+        emit('updateAssignedUsers', assignedUsers)
+      }
     }
   ]
 ]
@@ -69,7 +104,12 @@ const dropdownItems = ({ user }: typeof links[number]) => [
         v-for="user in assignedUsers"
         :key="user.id"
       >
-        {{ user.name }} {{ user.surname }}
+        <div class="flex">
+          {{ user.name }} {{ user.surname }}
+          <div class="font-normal ml-2">
+            {{ user.type }}
+          </div>
+        </div>
       </div>
     </div>
     <template #footer>

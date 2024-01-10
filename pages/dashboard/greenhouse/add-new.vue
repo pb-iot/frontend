@@ -1,11 +1,4 @@
 <script setup lang="ts">
-interface Device {
-  id: number,
-  name: string,
-  brand: string,
-  type: string
-}
-
 const addingGreenhouseElementType = ref('')
 const targetGreenhouseEnvironment = ref()
 const devices: Device[] = []

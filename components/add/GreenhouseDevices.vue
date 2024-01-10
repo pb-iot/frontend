@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const emit = defineEmits<{
-  addDevice: [device: object]
+  addDevice: [device: Device]
 }>()
 
-const devices = [{
+const devices: Device[] = [{
   id: 1,
   name: 'Gardena 999',
   brand: 'Natrysk',
@@ -18,8 +18,7 @@ const devices = [{
   name: 'Siii',
   brand: 'Pochłaniacz dwutlenku węgla',
   type: 'Funkcyjne'
-}
-]
+}]
 </script>
 
 <template>
