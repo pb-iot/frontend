@@ -17,7 +17,8 @@ const links = [{
 }]
 const links2 = [{
   label: 'Lista szklarni',
-  icon: 'i-heroicons-list-bullet'
+  icon: 'i-heroicons-list-bullet',
+  to: '/dashboard/greenhouse'
 }, {
   label: 'Dodaj szklarnię',
   icon: 'i-heroicons-plus-circle-solid',
