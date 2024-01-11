@@ -85,11 +85,17 @@ const submitBtn = ref()
 
 <template>
   <UCard
-    class="sticky top-[112px] w-full h-[804px]"
+    class="sticky top-[112px] w-full h-[827px]"
     :ui="{ body: { padding: ''}}"
   >
     <template #header>
-      <div>Nowa szklarnia</div>
+      <div class="flex items-center font-bold text-gray-400">
+        <UIcon
+          name="i-mdi-greenhouse"
+          class="w-12 h-12 mx-2"
+        />
+        Nowa szklarnia
+      </div>
     </template>
     <div class="px-4 pt-5 sm:p-6 sm:pb-0">
       <Form

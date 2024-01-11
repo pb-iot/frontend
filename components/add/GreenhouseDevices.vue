@@ -34,7 +34,7 @@ const devices: Device[] = [{
         <template #header>
           <div class="flex items-center font-bold text-gray-400">
             <UIcon
-              name="i-heroicons-cog-8-tooth"
+              name="i-mdi-shower-head"
               class="w-12 h-12 mx-2"
             />
             Urządzenie
