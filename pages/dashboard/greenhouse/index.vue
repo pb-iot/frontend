@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const { greenhouses } = await useGreenhouses()
+// Na potrzeby testowania
+for (let i = 0; i < 6; ++i) {
+  greenhouses.value.push(greenhouses.value[0])
+}
 const items = [{
   label: 'Lista',
   icon: 'i-heroicons-list-bullet-solid',
@@ -16,7 +20,29 @@ const selectedTabItem = ref('Lista')
 const onTabChange = (index: number) => {
   selectedTabItem.value = items[index].label
 }
-
+const greenhouseOptions = [
+  [{
+    label: 'Edytuj szklarnie',
+    icon: 'i-heroicons-pencil-square-20-solid',
+    to: '/edit',
+    click: () => {
+      console.log('Edit')
+    }
+  }], [{
+    label: 'Zarządzaj użytkownikami',
+    icon: 'i-heroicons-user-group-20-solid',
+    click: () => {
+      console.log('Edit')
+    }
+  }
+  ], [{
+    label: 'Usuń',
+    icon: 'i-heroicons-trash-20-solid',
+    click: () => {
+      console.log('Edit')
+    }
+  }]
+]
 </script>
 
 <template>
@@ -41,7 +67,7 @@ const onTabChange = (index: number) => {
     </div>
     <div
       v-if="selectedTabItem === 'Płytki'"
-      class="grid grid-cols-2 gap-20 px-20"
+      class="grid grid-cols-3 gap-20 px-20"
     >
       <UCard
         v-for="greenhouse in greenhouses"
@@ -52,12 +78,42 @@ const onTabChange = (index: number) => {
           <div class="flex items-center font-bold text-gray-400">
             <UIcon
               name="i-mdi-greenhouse"
-              class="w-12 h-12 mx-2"
+              class="w-12 h-12 mx-2 pt-10"
             />
             Szklarnia
+            <div class="w-5">
+              <div :class="greenhouse.users.length < 3 ? 'pl-16' : 'pl-10'">
+                <UAvatarGroup
+                  :max="2"
+                  :ui="{ margin: 'me-1 first:me-0' }"
+                >
+                  <UTooltip
+                    v-for="user in greenhouse.users"
+                    :key="user.id"
+                    :text="user.name + ' ' + user.surname"
+                    class="hover:cursor-help"
+                  >
+                    <UAvatar :src="user.avatar" />
+                  </UTooltip>
+                </UAvatarGroup>
+              </div>
+              <UDropdown
+                :ui="{
+                  width: 'w-56'
+                }"
+                class="pl-14 pt-2"
+                :items="greenhouseOptions"
+              >
+                <UButton
+                  color="white"
+                  label="Opcje"
+                  trailing-icon="i-heroicons-chevron-down-20-solid"
+                />
+              </UDropdown>
+            </div>
           </div>
         </template>
-        <div class="flex font-bold text-gray-400 px-7 py-10">
+        <div class="flex font-bold text-gray-400 px-7 py-5">
           Twoja rola:
           <div class="font-normal pl-2">
             Właściciel
