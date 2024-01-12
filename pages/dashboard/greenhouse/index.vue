@@ -4,6 +4,8 @@ const { greenhouses } = await useGreenhouses()
 for (let i = 0; i < 6; ++i) {
   greenhouses.value.push(greenhouses.value[0])
 }
+
+// Note: navigation
 const items = [{
   label: 'Lista',
   icon: 'i-heroicons-list-bullet-solid',
@@ -20,6 +22,8 @@ const selectedTabItem = ref('Lista')
 const onTabChange = (index: number) => {
   selectedTabItem.value = items[index].label
 }
+
+// Note: Greenhouse dropdown options
 const greenhouseOptions = [
   [{
     label: 'Edytuj szklarnie',
@@ -31,6 +35,7 @@ const greenhouseOptions = [
   }], [{
     label: 'Zarządzaj użytkownikami',
     icon: 'i-heroicons-user-group-20-solid',
+    to: '/edit',
     click: () => {
       console.log('Edit')
     }
@@ -38,11 +43,26 @@ const greenhouseOptions = [
   ], [{
     label: 'Usuń',
     icon: 'i-heroicons-trash-20-solid',
+    slot: 'delete',
     click: () => {
-      console.log('Edit')
+
     }
   }]
 ]
+
+// Note: Delete selected greenhouse
+const deleteGreenhouse = (greenhouse: Greenhouse) => {
+  return useConfirm(() => {
+    // TODO: Delete product by id using $fetch request
+    const greenhouseId = greenhouse.id
+    const idx = greenhouses.value.findIndex((greenhouse: Greenhouse) => greenhouse.id === greenhouseId)
+    if (idx === -1) return
+    greenhouses.value.splice(idx, 1)
+  }, {
+    message: 'Czy na pewno chcesz usunąć tę szklarnię?',
+    list: [greenhouse.name]
+  })
+}
 </script>
 
 <template>
@@ -109,6 +129,15 @@ const greenhouseOptions = [
                   label="Opcje"
                   trailing-icon="i-heroicons-chevron-down-20-solid"
                 />
+                <template #delete="{ item }">
+                  <div @click="deleteGreenhouse(greenhouse)">
+                    <UIcon
+                      :name="item.icon"
+                      class="text-gray-400 dark:text-gray-500 mr-2"
+                    />
+                    <span class="truncate">{{ item.label }}</span>
+                  </div>
+                </template>
               </UDropdown>
             </div>
           </div>
