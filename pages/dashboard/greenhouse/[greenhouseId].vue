@@ -15,8 +15,7 @@ const user = {
   <div class="grid grid-cols-2 gap-8">
     <div>
       <h1>My Greenhouse: {{ id }}</h1>
-      <ProfileChangePassword :user="user" />
-      <AlertDeleteAccountEnterPassword/>
+      <ProfileOptionsAndInfo :user="user"/>
       </div>
   </div>
 </template>
