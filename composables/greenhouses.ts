@@ -104,7 +104,7 @@ export const useGreenhouses = createGlobalState(async () => {
       stemMicrovariation: 7
     }
   }
-])
+  ])
 
   return { greenhouses }
 })
