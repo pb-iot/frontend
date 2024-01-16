@@ -8,29 +8,23 @@ defineProps<{
         avatar: string
     }
 }>()
-const options = [
+const options = [[
   {
-    id: 'editData',
     label: 'Edytuj dane',
-    href: '',
-    target: '_self',
-    icon: 'i-heroicons-pencil-square-solid'
+    icon: 'i-heroicons-pencil-square-solid',
+    click: () => console.log('edit')
   },
   {
-    id: 'editPassword',
     label: 'Zmień hasło',
-    href: '',
-    target: '_self',
-    icon: 'i-heroicons-key-solid'
+    icon: 'i-heroicons-key-solid',
+    click: () => console.log('edit')
   },
   {
-    id: 'deleteAccount',
     label: 'Usuń konto',
-    href: '',
-    target: '_self',
-    icon: 'i-heroicons-trash-solid'
+    icon: 'i-heroicons-trash-solid',
+    click: () => console.log('edit')
   }
-]
+]]
 const confirm = () => console.log('confirm')
 const cancel = () => console.log('cancel')
 </script>
@@ -40,10 +34,9 @@ const cancel = () => console.log('cancel')
     :user="user"
   >
     <template #options>
-      <USelectMenu
-        placeholder="Opcje"
-        :options="options"
-      />
+      <UDropdown :items="options">
+        <UButton color="white" label="Opcje" trailing-icon="i-heroicons-chevron-down-20-solid" />
+      </UDropdown>
     </template>
     <!-- Personal Information -->
     <div class="-mx-4">
