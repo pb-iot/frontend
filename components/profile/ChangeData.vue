@@ -8,7 +8,10 @@ defineProps<{
         avatar: string
     }
 }>()
-
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Send request to the backend
+  console.log(values)
+}) 
 const confirm = () => console.log('confirm')
 const cancel = () => console.log('cancel')
 </script>
