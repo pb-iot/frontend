@@ -25,3 +25,6 @@ logs
 
 # Mergetool backup files
 *.orig
+
+# Direnv
+.direnv
