@@ -4,9 +4,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  // NOTE: Add to modules 'nuxt-graphql-client' when this issue https://github.com/Diizzayy/nuxt-graphql-client/issues/455 is solved
-  // Also add nuxt-graphql-client to package.json
-  modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt', 'magic-regexp/nuxt', '@vue-macros/nuxt'],
+  modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt', 'magic-regexp/nuxt', '@vue-macros/nuxt', 'nuxt-graphql-client'],
   ssr: false,
 
   ui: {
@@ -47,6 +45,18 @@ export default defineNuxtConfig({
           }
         }
       }
+    }
+  },
+
+  
+  'graphql-client':{
+    clients: {
+      default: {
+        host: process.env.NUXT_PUBLIC_GQL_HOST as string,
+      }
+    },
+    codegen: {
+      silent: false
     }
   },
 
