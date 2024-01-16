@@ -21,6 +21,7 @@ definePageMeta({
       >
         Cofnij
       </UButton>
+      <UButton label="XDDDD" />
       <UButton
         to="/reset-password-message"
         block

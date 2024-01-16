@@ -4,7 +4,9 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt', 'magic-regexp/nuxt', 'nuxt-graphql-client'],
+  // NOTE: Add to modules 'nuxt-graphql-client' when this issue https://github.com/Diizzayy/nuxt-graphql-client/issues/455 is solved
+  // Also add nuxt-graphql-client to package.json
+  modules: ['@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@vee-validate/nuxt', 'magic-regexp/nuxt', '@vue-macros/nuxt'],
   ssr: false,
 
   ui: {
@@ -13,7 +15,7 @@ export default defineNuxtConfig({
   },
 
   pinia: {
-    autoImports: ['acceptHMRUpdate', ['defineStore', 'definePiniaStore'], 'storeToRefs'],
+    autoImports: ['acceptHMRUpdate', 'defineStore', 'storeToRefs'],
     storesDirs: ['./stores/**']
   },
 

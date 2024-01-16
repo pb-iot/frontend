@@ -39,7 +39,7 @@ const createLock = <T>(fn: () => T | Promise<T>) => {
   return res
 }
 
-export const useConfirmStore = definePiniaStore('confirm', () => {
+export const useConfirmStore = defineStore('confirm', () => {
   const queue = ref([] as ConfirmLockOptions<any>[])
   const loading = ref(false)
   const forceClose = ref(false)
@@ -47,12 +47,15 @@ export const useConfirmStore = definePiniaStore('confirm', () => {
   const createConfirmation = async <T>(options: ConfirmOptions<T>) => {
     const { waitForRelease, release, cancel } = createLock(options.callback)
 
+    // Zaraz pushniemy do kolejki
     queue.value.push({
       ...options,
       release,
       cancel
     })
 
+    console.log('kolejka po pushnieciu')
+    console.log(queue.value)
     return waitForRelease()
   }
 
