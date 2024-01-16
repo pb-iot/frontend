@@ -60,7 +60,6 @@ const greenhouseOptions = (greenhouse: Greenhouse) => [
 
 <template>
   <div class="max-w-7xl">
-    <ModalConfirm />
     <div class="flex pt-10 pl-24">
       <div class="pt-2">
         Wyświetlaj jako:
