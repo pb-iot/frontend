@@ -40,10 +40,10 @@ const cancel = () => console.log('cancel')
     :user="user"
   >
     <template #options>
-    <USelectMenu
-      placeholder="Opcje"
-      :options="options"
-    />
+      <USelectMenu
+        placeholder="Opcje"
+        :options="options"
+      />
     </template>
     <!-- Personal Information -->
     <div class="-mx-4">

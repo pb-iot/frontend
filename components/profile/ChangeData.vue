@@ -19,8 +19,8 @@ const cancel = () => console.log('cancel')
     @confirm="confirm"
     @cancel="cancel"
   >
-     <!-- Data change form -->
-     <div class="-mx-4">
+    <!-- Data change form -->
+    <div class="-mx-4">
       <Form
         :validation-schema="schema"
         class="mx-5 mb-7"
