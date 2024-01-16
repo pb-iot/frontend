@@ -6,18 +6,22 @@ const config = useRuntimeConfig()
 </script>
 
 <template>
-  <MapboxMap 
-    :accessToken="config.public.MAPBOX_TOKEN" 
-    :maxZoom="13"
+  <MapboxMap
+    :access-token="config.public.MAPBOX_TOKEN"
+    :max-zoom="13"
   >
     <MapboxPositionInitializer :locations="locations ?? []" />
-    <MapboxMarker 
+    <MapboxMarker
       v-for="loc in locations ?? []"
       :key="[loc.lng, loc.lat]"
-      :lngLat="[loc.lng, loc.lat]"
+      :lng-lat="[loc.lng, loc.lat]"
     >
       <template #icon>
-        <img src="/pin.svg" class="w-6" alt="pin" />
+        <img
+          src="/pin.svg"
+          class="w-6"
+          alt="pin"
+        >
       </template>
 
       <MapboxPopup class-name="custom-popup">

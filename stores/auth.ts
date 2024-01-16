@@ -3,14 +3,15 @@ export const useAuthStore = defineStore('auth', () => {
   const refreshToken = useLocalStorage('auth:refreshToken', '')
 
   const login = async (credentials) => {
-    const { tokenAuth: data } = await GqlLogin(credentials)
-    token.value = data.token
-    refreshToken.value = data.refreshToken
+    // NOTE: During nuxt-graphql-client module issue this is commented, for more information check https://github.com/Diizzayy/nuxt-graphql-client/issues/455
+    // const { tokenAuth: data } = await GqlLogin(credentials)
+    // token.value = data.token
+    // refreshToken.value = data.refreshToken
   }
 
   const register = async (data) => {
-    await GqlRegister(data)
-    await login(data)
+    // await GqlRegister(data)
+    // await login(data)
   }
 
   const logout = () => {
@@ -18,8 +19,8 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   watchEffect(() => {
-    if (token.value === '') return
-    useGqlToken(token.value)
+    // if (token.value === '') return
+    // useGqlToken(token.value)
   })
 
   const isLoggedIn = computed(() => token.value !== '')

@@ -6,6 +6,7 @@ const title = defineProp<string>()
 const width = defineProp<string>('max-w-6xl')
 
 const slots = useSlots()
+
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { t } = useI18n({ useScope: 'local' })
+console.log('to jest ref z confirm')
+console.log('Cokolwiek pls XD')
 const store = useConfirmStore()
 
 const confirmState = useClamp(0, 0, 1)
@@ -30,9 +31,11 @@ const open = computed({
     abort()
   }
 })
+
 </script>
 
 <template>
+  <!-- <UModal v-model="open" /> -->
   <ModalGeneric
     v-model="open"
     width="max-w-lg"

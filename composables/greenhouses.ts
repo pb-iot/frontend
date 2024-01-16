@@ -108,3 +108,18 @@ export const useGreenhouses = createGlobalState(async () => {
 
   return { greenhouses }
 })
+
+// Note: Delete selected greenhouse
+const { greenhouses } = await useGreenhouses()
+export const deleteGreenhouse = (greenhouse: Greenhouse) => {
+  console.log('czy tu wchodzimy?')
+  return useConfirm(() => {
+    const greenhouseId = greenhouse.id
+    const idx = greenhouses.value.findIndex((greenhouse: Greenhouse) => greenhouse.id === greenhouseId)
+    if (idx === -1) return
+    greenhouses.value.splice(idx, 1)
+  }, {
+    message: 'Czy na pewno chcesz usunąć tę szklarnię?',
+    list: [greenhouse.name]
+  })
+}
