@@ -27,6 +27,7 @@ const links2 = [{
 ]
 
 const colorMode = useColorMode()
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -64,7 +65,13 @@ const colorMode = useColorMode()
         alt="Avatar"
       />
       <div class="mr-5">
-        <p>Jan Kowalski</p>
+        <p v-if="userStore.authorizedUser">
+          {{ userStore.authorizedUser.firstName }} 
+          {{ userStore.authorizedUser.lastName }}
+        </p>
+        <p v-else>
+          Użyszkodnik
+        </p>
         <UButton
           color="white"
           variant="solid"

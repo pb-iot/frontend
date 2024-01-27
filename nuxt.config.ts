@@ -50,11 +50,6 @@ export default defineNuxtConfig({
 
   
   'graphql-client':{
-    clients: {
-      default: {
-        host: process.env.NUXT_PUBLIC_GQL_HOST as string,
-      }
-    },
     codegen: {
       silent: false
     }

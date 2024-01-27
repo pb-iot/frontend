@@ -1,0 +1,68 @@
+mutation CreateDevice(
+  $greenhouse: ID!, 
+  $functionality: String!, 
+  $name: String!
+) {
+  createDevice(
+    input: {
+      functionality: $functionality, 
+      greenhouse: $greenhouse, 
+      name: $name
+    }
+  ) {
+    device {
+      id
+    }
+  }
+}
+
+mutation UpdateDevice(
+  $id: Int!,
+  $greenhouse: ID!, 
+  $functionality: String!, 
+  $name: String!
+) {
+  updateDevice(
+    id: $id,
+    input: {
+      functionality: $functionality, 
+      greenhouse: $greenhouse, 
+      name: $name
+    }
+  ) {
+    device {
+      id
+    }
+  }
+}
+
+mutation DeleteDevice($id: Int!) {
+  deleteDevice(id: $id) {
+    device {
+      id
+    }
+  }
+}
+
+query GetDevice($id: Int!) {
+  device(id: $id) {
+    functionality
+    id
+    name
+    greenhouse {
+      id
+    }
+  }
+}
+
+query GetDevices {
+  devices {
+    functionality
+    id
+    name
+
+    greenhouse {
+      id
+    }
+  }
+}

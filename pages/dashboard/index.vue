@@ -4,6 +4,5 @@ const auth = useAuthStore()
 
 <template>
   <div class="min-w-[450px] mx-auto text-center">
-    {{ auth.isLoggedIn }}
   </div>
 </template>

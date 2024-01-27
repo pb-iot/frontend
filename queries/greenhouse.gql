@@ -1,0 +1,88 @@
+mutation CreateGreenhouse(
+  $authorizedUsers: [ID!]!, 
+  $location: ID!, 
+  $cropType: String!, # TT, PT
+  $name: String!
+) {
+  createGreenhouse(
+    input: {authorizedUsers: $authorizedUsers, name: $name, location: $location, cropType: $cropType}
+  ) {
+    greenhouse {
+      id
+    }
+  }
+}
+
+mutation UpdateGreenhouse($id: Int!, $authorizedUsers: [ID!]!, $location: ID!, $cropType: String!, $name: String!) {
+  updateGreenhouse(
+    id: $id
+    input: {authorizedUsers: $authorizedUsers, name: $name, location: $location, cropType: $cropType}
+  ) {
+    greenhouse {
+      id
+    }
+  }
+}
+
+mutation DeleteGreenhouse($id: Int!) {
+  deleteGreenhouse(id: $id) {
+    greenhouse {
+      id
+    }
+  }
+}
+query GetGreenhouse($id: Int!) {
+  greenhouse(id: $id) {
+    id
+    name
+    cropType
+
+    authorizedUsers {
+      id
+    }
+
+    deviceSet {
+      id
+    }
+
+    environmentSet {
+      id
+    }
+
+    location {
+      id
+    }
+
+    owner {
+      id
+    }
+  }
+}
+
+query GetGreenhouses {
+  greenhouses {
+    id
+    name
+    cropType
+
+    authorizedUsers {
+      id
+    }
+
+    deviceSet {
+      id
+    }
+
+    environmentSet {
+      id
+    }
+
+    location {
+      id
+    }
+
+    owner {
+      id
+    }
+  }
+}

@@ -15,7 +15,6 @@ mutation login($email: String!, $password: String!) {
   tokenAuth(email: $email, password: $password) {
     token
     refreshToken
-    refreshExpiresIn
   }
 }
 
@@ -29,6 +28,5 @@ mutation refreshToken($refreshToken: String!) {
   refreshToken(refreshToken: $refreshToken) {
     token
     refreshToken
-    refreshExpiresIn
   }
 }

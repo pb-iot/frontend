@@ -1,0 +1,67 @@
+query GetAuthenticatedUser {
+  authenticatedUser {
+    id
+    firstName
+    email
+    lastName
+    ownedGreenhouses {
+      id
+      name
+      authorizedUsers {
+        id
+        email
+        firstName
+        lastName
+      }
+      location {
+        coordinates
+        id
+        name
+      }
+    }
+  }
+}
+
+query GetUser($id: Int!) {
+  user(id: $id) {
+    id
+    email
+    firstName
+    lastName
+    lastLogin
+
+    locationSet {
+      id
+    }
+
+    ownedGreenhouses {
+      id
+    }
+
+    greenhouseSet {
+      id
+    }
+  }
+}
+
+query GetUsers {
+  users {
+    id
+    email
+    firstName
+    lastName
+    lastLogin
+
+    locationSet {
+      id
+    }
+
+    ownedGreenhouses {
+      id
+    }
+
+    greenhouseSet {
+      id
+    }
+  }
+}
