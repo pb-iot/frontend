@@ -5,18 +5,39 @@ interface Map {
   code: String
 }
 
+const locations = [
+  {
+    lng: 23.342342,
+    lat: 53.342342
+  }
+]
+
 // locationOptions for now when we don't use library to choose location
 // TODO: Add locationOptions and map
-
-const locations = await useLocations()
-const locationOptions = computed(() => {
-  return locations.value.map((location) => {
-    return {
-      label: location.name,
-      value: location.id
-    }
-  })
-})
+const locationOptions: SelectFieldOption[] = [{
+  label: 'Ogrodowa 5, 16-500 Sejny',
+  value: {
+    street: 'Ogrodowa 5',
+    city: 'Sejny',
+    code: '16-500'
+  } as Map
+},
+{
+  label: 'Wyszyńskiego 30, 15-800 Białystok',
+  value: {
+    street: 'Wyszyńskiego 30',
+    city: 'Sejny',
+    code: '15-800'
+  } as Map
+},
+{
+  label: 'Obi-wana Kenobiego 9, 12-800 Poznań',
+  value: {
+    street: 'Obi-wana Kenobiego 9',
+    city: 'Poznań',
+    code: '12-800'
+  } as Map
+}]
 
 interface Link {
   label: string
@@ -54,7 +75,7 @@ const schema = createSchema({
   typeOfCrop: Yup.string().min(2, 'Niepoprawny typ uprawy').required('Typ uprawy jest wymagany')
 })
 
-const { submit, loading } = createSubmitHandler(schema, async (values) => {
+const submit = createSubmitHandler(schema, (values) => {
   // TODO: Send request to the backend
   console.log(values)
 })
@@ -149,7 +170,6 @@ const submitBtn = ref()
         />
         <UButton
           class="ml-2 px-[33.35px]"
-          :loading="loading"
           :ui="{ base:'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0' }"
           label="Zapisz szklarnię"
           block

@@ -1,4 +1,13 @@
 <script setup lang="ts">
+const schema = createSchema({
+  password: Yup.string().required('Hasło jest wymagane'),
+  repeatPassword: Yup.string().required('Hasło jest wymagane')
+})
+
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Send request to the backend
+  console.log(values)
+})
 </script>
 <template>
   <AlertDeleteCard
@@ -8,7 +17,9 @@
       Aby usunąć konto, podaj swoje hasło
     </template>
     <template #description>
-      <Form>
+      <Form
+        :validation-schema="schema"
+        @submit="submit">
         <TextField
           class="py-1"
           name="password"
