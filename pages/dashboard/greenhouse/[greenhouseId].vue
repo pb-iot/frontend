@@ -28,9 +28,7 @@
       <div class="grid grid-cols-2 gap-8">
         <div>
           <h1>My Greenhouse: {{ id }}</h1>
-          <StatsCardNew/>
-        <StatsSingleGreenhouse :greenhouseStats="greenhouseStats" />
-        <ProfileOptionsAndInfo :user="user"/>
+        <DevicesJournal/>
         </div>
       </div>
     </template>
