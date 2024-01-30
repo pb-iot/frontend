@@ -1,24 +1,30 @@
+mutation UpdateUser($id: Int!, $firstName: String!, $lastName: String!) {
+  updateUser(id: $id, input: { firstName: $firstName, lastName: $lastName }) {
+    user {
+      id
+    }
+  }
+}
+
+mutation UpdatePassword($id: Int!, $password: String!, $oldPassword: String!, $passwordConfirmation: String!) {
+  changePassword(
+    id: $id
+    newPassword: $password
+    oldPassword: $oldPassword
+    repeatPassword: $passwordConfirmation
+  ) {
+    user {
+      id
+    }
+  }
+}
+
 query GetAuthenticatedUser {
   authenticatedUser {
     id
-    firstName
     email
+    firstName
     lastName
-    ownedGreenhouses {
-      id
-      name
-      authorizedUsers {
-        id
-        email
-        firstName
-        lastName
-      }
-      location {
-        coordinates
-        id
-        name
-      }
-    }
   }
 }
 
@@ -34,7 +40,7 @@ query GetUser($id: Int!) {
       id
     }
 
-    ownedGreenhouses {
+    greenhouseSet {
       id
     }
 
@@ -56,7 +62,7 @@ query GetUsers {
       id
     }
 
-    ownedGreenhouses {
+    greenhouseSet {
       id
     }
 

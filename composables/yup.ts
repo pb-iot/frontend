@@ -15,7 +15,22 @@ export const createSchema = <S extends Record<string, any>>(schema: ShapeFromTyp
 export const createSubmitHandler = <Schema extends Yup.ObjectSchema<Record<string, any>>>(
   schema: Schema,
   callback: (values: Yup.InferType<Schema>, ctx: SubmissionContext) => void
-) => (values: Record<string, any>, ctx: SubmissionContext) => callback(schema.cast(values), ctx)
+) => {
+  const loading = ref(false)
+  return {
+    loading,
+    submit: async (values: Record<string, any>, ctx: SubmissionContext) => {
+      loading.value = true
+      try {
+        return callback(schema.cast(values), ctx)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        loading.value = false
+      }
+    }
+  }
+}
 
 export { Yup }
 

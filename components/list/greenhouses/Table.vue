@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  greenhouseOptions:(greenhouse: Greenhouse) => []
+  greenhouseOptions: (greenhouse: Greenhouse) => []
 }>()
 
 const columns = [{
@@ -10,19 +10,26 @@ const columns = [{
   key: 'yourRole',
   label: 'Twoje Rola'
 }, {
-  key: 'plantType',
+  key: 'cropType',
   label: 'Typ uprawy'
 }, {
   key: 'location',
   label: 'Lokacja'
 }, {
-  key: 'users',
+  key: 'authorizedUsers',
   label: 'Użytkownicy'
 }, {
   key: 'actions'
 }]
-const userStore = useUserStore()
-const greenhouses = computed(() => userStore.authorizedUser?.ownedGreenhouses ?? [])
+
+const greenhouses = await useGreenhouses()
+const user = await useAuthenticatedUser()
+
+const getRole = (greenhouse: Greenhouse) => {
+  return greenhouse.owner.id === user?.id
+    ? 'Właściciel'
+    : 'Użytkownik'
+}
 </script>
 
 <template>
@@ -47,26 +54,24 @@ const greenhouses = computed(() => userStore.authorizedUser?.ownedGreenhouses ??
           :rows="greenhouses"
           :columns="columns"
         >
-          <template #yourRole-data>
-            <!-- NOTE: Find yourself in greenhouse's users array and display role -->
-            <div>Właściciel</div>
+          <template #yourRole-data="{ row }">
+            {{ getRole(row) }}
           </template>
-          <template #location-data>
-            <!-- TODO: get location from 'location' field and convert to street name -->
-            <div> ul. Wyszyństkiego 8C </div>
+          <template #location-data="{ row }">
+            {{ row.location.name }}
           </template>
-          <template #users-data="{ row }">
+          <template #authorizedUsers-data="{ row }">
             <UAvatarGroup
               :max="2"
               :ui="{ margin: 'me-1 first:me-0' }"
             >
               <UTooltip
-                v-for="user in row.users"
+                v-for="user in row.authorizedUsers"
                 :key="user.id"
-                :text="user.name + ' ' + user.surname"
+                :text="user.firstName + ' ' + user.lastName"
                 class="hover:cursor-help"
               >
-                <UAvatar :src="user.avatar" />
+                <UAvatar :src="useAvatar(user)" />
               </UTooltip>
             </UAvatarGroup>
           </template>

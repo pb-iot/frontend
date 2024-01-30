@@ -23,9 +23,20 @@ export const useAuthStore = defineStore('auth', () => {
     refreshToken.value = ''
   }
 
-  watchEffect(() => {
-    if (!token.value) return
+  const forceRefreshToken = async () => {
+    try {
+      const { refreshToken: data } = await GqlRefreshToken({
+        refreshToken: refreshToken.value
+      })
 
+      token.value = data?.token
+      refreshToken.value = data?.refreshToken
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  watchEffect(() => {
     useGqlToken({
       token: token.value,
       config: {
@@ -49,19 +60,9 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     
-    const tokenExpired = err.gqlErrors.some(e => e.message.includes('id-token-expired'))
-    const tokenRevoked = err.gqlErrors.some(e => e.message.includes('id-token-revoked'))
-
-
-    console.log(tokenExpired, tokenRevoked)
-
-    if (tokenExpired || tokenRevoked) {
-      const { refreshToken: data } = await GqlRefreshToken({
-        refreshToken: refreshToken.value
-      })
-
-      token.value = data?.token
-      refreshToken.value = data?.refreshToken
+    const tokenExpired = err.gqlErrors.some(e => e.message === 'Signature has expired')
+    if (tokenExpired) {
+      await forceRefreshToken()
     }
   })
 
@@ -71,7 +72,8 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     logout,
     register,
-    isLoggedIn
+    isLoggedIn,
+    refreshToken: forceRefreshToken
   }
 })
 

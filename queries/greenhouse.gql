@@ -39,6 +39,8 @@ query GetGreenhouse($id: Int!) {
 
     authorizedUsers {
       id
+      firstName
+      lastName
     }
 
     deviceSet {
@@ -64,23 +66,22 @@ query GetGreenhouses {
     id
     name
     cropType
-
     authorizedUsers {
       id
+      firstName
+      lastName
     }
-
     deviceSet {
       id
     }
-
     environmentSet {
       id
     }
-
     location {
       id
+      name
+      coordinates
     }
-
     owner {
       id
     }

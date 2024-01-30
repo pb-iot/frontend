@@ -1,38 +1,27 @@
 <script setup lang="ts">
-// TODO: ADD VALIDATION
-defineProps<{
-    // TODO: Use `User` type
-    user: {
-        firstname: string
-        lastname: string
-        avatar: string
-    }
-}>()
 const options = [[
   {
     label: 'Edytuj dane',
     icon: 'i-heroicons-pencil-square-solid',
-    click: () => console.log('edit')
+    to: '/profile/edit'
   },
   {
     label: 'Zmień hasło',
     icon: 'i-heroicons-key-solid',
-    click: () => console.log('edit')
+    to: '/profile/password'
   },
   {
     label: 'Usuń konto',
     icon: 'i-heroicons-trash-solid',
-    click: () => console.log('edit')
+    click: () => console.log('delete')
   }
 ]]
-const confirm = () => console.log('confirm')
-const cancel = () => console.log('cancel')
+
+const user = await useAuthenticatedUser()
 </script>
 
 <template>
-  <ProfileCard
-    :user="user"
-  >
+  <ProfileCard :user="user">
     <template #options>
       <UDropdown :items="options">
         <UButton

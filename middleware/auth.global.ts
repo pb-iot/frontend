@@ -1,8 +1,9 @@
 export default defineNuxtRouteMiddleware((to) => {
   const auth = useAuthStore()
+  // auth.refreshToken()
 
   // When not logged in and not navigates to auth route, redirect to login
-  if (!auth.isLoggedIn && !to.meta.layout === 'auth') {
+  if (!auth.isLoggedIn && to.meta.layout !== 'auth') {
     return navigateTo('/')
   }
 

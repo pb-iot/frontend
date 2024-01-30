@@ -1,10 +1,4 @@
 <script setup lang="ts">
-const { greenhouses } = await useGreenhouses()
-// Na potrzeby testowania
-for (let i = 0; i < 6; ++i) {
-  greenhouses.value.push(greenhouses.value[0])
-}
-
 // Note: navigation
 const items = [{
   label: 'Lista',

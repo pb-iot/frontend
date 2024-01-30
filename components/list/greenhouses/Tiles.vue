@@ -13,8 +13,8 @@ defineProps<{
   }[])[]
 }>()
 
-const userStore = useUserStore()
-const greenhouses = computed(() => userStore.authorizedUser?.ownedGreenhouses ?? [])
+const user = await useAuthenticatedUser()
+const greenhouses = computed(() => user.value?.greenhouseSet ?? [])
 </script>
 
 <template>

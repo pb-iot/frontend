@@ -27,7 +27,7 @@ const links2 = [{
 ]
 
 const colorMode = useColorMode()
-const userStore = useUserStore()
+const user = await useAuthenticatedUser()
 </script>
 
 <template>
@@ -61,13 +61,13 @@ const userStore = useUserStore()
       <UAvatar
         class="mx-4"
         size="lg"
-        src="https://avatars.githubusercontent.com/u/739984?v=4"
+        :src="useAvatar(user)"
         alt="Avatar"
       />
       <div class="mr-5">
-        <p v-if="userStore.authorizedUser">
-          {{ userStore.authorizedUser.firstName }} 
-          {{ userStore.authorizedUser.lastName }}
+        <p v-if="user">
+          {{ user.firstName }} 
+          {{ user.lastName }}
         </p>
         <p v-else>
           Użyszkodnik
@@ -77,8 +77,9 @@ const userStore = useUserStore()
           variant="solid"
           icon="i-heroicons-cog-8-tooth"
           size="2xs"
+          to="/profile"
         >
-          Edytuj konto
+          Moje konto
         </UButton>
       </div>
     </div>

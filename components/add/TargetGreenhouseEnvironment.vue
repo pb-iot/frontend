@@ -16,7 +16,7 @@ const schema = createSchema({
 
 })
 
-const submit = createSubmitHandler(schema, (values) => {
+const { submit, loading } = createSubmitHandler(schema, async (values) => {
   // TODO: Wysłanie zapytania do backendu
   console.log(values)
   emit('updateGreenhouseEnvironment', values)
@@ -134,6 +134,7 @@ const submitBtn = ref()
         />
         <UButton
           class="ml-2 px-[33.35px]"
+          :loading="loading"
           :ui="{ base:'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0' }"
           label="Zapisz szklarnię"
           block

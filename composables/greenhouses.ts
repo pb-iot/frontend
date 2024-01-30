@@ -1,20 +1,26 @@
-export const useGreenhouses = createGlobalState(async () => {
-  // TODO: use with backend
-  // const { data: greenhouses } = await useFetch('/api/greenhouses')
+export const useGreenhouses = async () => {
+  const { data: greenhouses } = await useAsyncData(`greenhouses`, async () => {
+    const { greenhouses } = await GqlGetGreenhouses()
+    return greenhouses
+  })
 
-  const greenhouses = ref<Greenhouse[]>([])
+  return greenhouses
+}
 
-  // const data = await GqlGetGreenhouses()
-  // console.log(data)
+export const useGreenhouse = async (id: MaybeRefOrGetter<number>) => {
+  const { data: greenhouse } = await useAsyncData(`greenhouse-${resolveUnref(id)}`, async () => {
+    const { greenhouse } = await GqlGetGreenhouse({ id: +resolveUnref(id) })
+    return greenhouse
+  }, { 
+    watch: [resolveRef(id)] 
+  })
 
+  return greenhouse
+}
 
-  return { greenhouses }
-})
-
-// Note: Delete selected greenhouse
-
+// NOTE: Delete selected greenhouse
 export const deleteGreenhouse = async (greenhouse: Greenhouse) => {
-  const { greenhouses } = await useGreenhouses()
+  const greenhouses = await useGreenhouses()
 
   return useConfirm(() => {
     const greenhouseId = greenhouse.id

@@ -1,23 +1,16 @@
 export const useUserStore = defineStore('user', () => {
-  const authorizedUser = ref()
+  const auth = useAuthStore()
+
+  const { data: authorizedUser, error } = useAsyncData('authorizedUser', async () => {
+    await GqlGetAuthenticatedUser()
+  }, {
+    watch: [computed(() => auth.isLoggedIn)]
+  })
 
   const router = useRouter()
-  const auth = useAuthStore()
-  watchEffect(async () => {
-    if (!auth.isLoggedIn) {
-      authorizedUser.value = undefined
-      return
-    }
-
-    const { authenticatedUser } = await GqlGetAuthenticatedUser().catch(async (error) => {
-      console.log(error)
-      auth.logout()
-      await router.push('/')
-      return undefined
-    })
-
-    console.log(authenticatedUser)
-    authorizedUser.value = authenticatedUser
+  whenever(error, (error) => {
+    auth.logout()
+    return router.push('/')
   })
 
   return { authorizedUser }

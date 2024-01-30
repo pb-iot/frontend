@@ -75,7 +75,7 @@ const schema = createSchema({
   typeOfCrop: Yup.string().min(2, 'Niepoprawny typ uprawy').required('Typ uprawy jest wymagany')
 })
 
-const submit = createSubmitHandler(schema, (values) => {
+const { submit, loading } = createSubmitHandler(schema, async (values) => {
   // TODO: Send request to the backend
   console.log(values)
 })
@@ -170,6 +170,7 @@ const submitBtn = ref()
         />
         <UButton
           class="ml-2 px-[33.35px]"
+          :loading="loading"
           :ui="{ base:'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0' }"
           label="Zapisz szklarnię"
           block
