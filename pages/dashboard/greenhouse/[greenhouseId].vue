@@ -32,6 +32,8 @@ const greenhouseStats = {
       <StatsCardNew />
       <!--<ProfileOptionsAndInfo :user="user" />-->
       <!--<StatsSingleGreenhouse :greenhouse-stats="greenhouseStats" />-->
+      <!--<EnvironmentCard />-->
+      <EnvironmentTargetEnvironment />
     </div>
   </div>
 </template>
