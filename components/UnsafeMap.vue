@@ -32,10 +32,8 @@ const config = useRuntimeConfig()
         >
       </template>
 
-      <MapboxPopup class-name="custom-popup">
-        <UCard>
-          Test popup
-        </UCard>
+      <MapboxPopup v-if="$slots.default" class-name="custom-popup">
+        <slot :location="loc" />
       </MapboxPopup>
     </MapboxMarker>
   </MapboxMap>

@@ -14,18 +14,18 @@ defineProps<{
 }>()
 
 const greenhouses = await useGreenhouses()
+const { locations } = await useLocations()
+const knownLocations = computed(() => locations.value.filter(location => location.greenhouseSet.length > 0))
+const getGreenhouse = (locationId: string) => {
+  console.log(locationId, greenhouses.value)
+  return greenhouses.value.find(greenhouse => greenhouse.location.id == locationId)
+}
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-2 px-20">
-    <div
-        class="flex justify-center relative z-10"
-        v-for="greenhouse in greenhouses"
-        :key="greenhouse.id"
-      >
-      <UCard
-        :ui="{ body: { padding: ''}}"
-      >
+  <Map class="h-full" :locations="knownLocations" v-slot="{ location }">
+    <div v-for="greenhouse in [getGreenhouse(location.id)].filter(i => i)">
+      <UCard>
         <template #header>
           <div class="flex items-center font-bold text-gray-400">
             <UIcon
@@ -65,13 +65,6 @@ const greenhouses = await useGreenhouses()
             </div>
           </div>
         </template>
-        <div class="flex font-bold text-gray-400 px-7 py-5">
-          Twoja rola:
-          <div class="font-normal pl-2">
-            Właściciel
-          </div>
-        </div>
-        <template #footer>
           <div class="flex font-bold text-gray-400">
             Nazwa:
             <div class="font-normal pl-2">
@@ -90,8 +83,13 @@ const greenhouses = await useGreenhouses()
               {{ greenhouse.location.name }}
             </div>
           </div>
+        <template #footer>
+          <UButton
+            block
+            :to="`/dashboard/greenhouse/${greenhouse.id}`"
+          >Zobacz szklarnię</UButton>
         </template>
       </UCard>
     </div>
-  </div>
+  </Map>
 </template>
