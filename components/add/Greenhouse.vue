@@ -12,6 +12,10 @@ const locations = [
   }
 ]
 
+const props = defineProps<{
+  greenhouse?: Greenhouse
+}>()
+
 // locationOptions for now when we don't use library to choose location
 // TODO: Add locationOptions and map
 const locationOptions: SelectFieldOption[] = [{
@@ -71,8 +75,8 @@ watch(selectedLink, () => {
 })
 
 const schema = createSchema({
-  greenhouseName: useGreenhouseNameValidationSchema(),
-  typeOfCrop: Yup.string().min(2, 'Niepoprawny typ uprawy').required('Typ uprawy jest wymagany')
+  name: useGreenhouseNameValidationSchema(),
+  cropType: Yup.string().min(2, 'Niepoprawny typ uprawy').required('Typ uprawy jest wymagany')
 })
 
 const submit = createSubmitHandler(schema, (values) => {
@@ -100,12 +104,13 @@ const submitBtn = ref()
     <div class="px-4 pt-5 sm:p-6 sm:pb-0">
       <Form
         :validation-schema="schema"
+        :initial-values="greenhouse ?? {}"
         @submit="submit"
       >
         <TextField
           placeholder="Wpisz nazwę"
           class="py-2"
-          name="greenhouseName"
+          name="name"
           label="Nazwa szklarni"
           required
         />
@@ -113,13 +118,14 @@ const submitBtn = ref()
         <TextField
           placeholder="Wpisz rodzaj uprawy"
           class="py-2"
-          name="typeOfCrop"
+          name="cropType"
           label="Rodzaj uprawy"
           required
         />
         <!-- Add map -->
         <div class="flex items-end gap-4 py-2">
           <SelectMenuField
+            v-model="greenhouse.location.name"
             class="flex-1"
             label="Lokalizacja"
             name="location"

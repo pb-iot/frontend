@@ -1,6 +1,7 @@
-import { GetGreenhouseQuery, GetUserQuery, GetDeviceQuery } from "#gql/default"
+import { GetGreenhouseQuery, GetUserQuery, GetDeviceQuery, GetAuthenticatedUserQuery } from "#gql/default"
 
 declare type User = GetUserQuery
+declare type AuthenticatedUser = GetAuthenticatedUserQuery
 declare type Device = GetDeviceQuery
 declare type Greenhouse = GetGreenhouseQuery
 
