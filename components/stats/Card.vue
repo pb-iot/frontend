@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const items = [
   [{
     label: 'Data',
@@ -13,7 +13,15 @@ const options = [{
   value: 'powyzejNormy',
   label: 'Powyżej normy'
 }]
+
+const props = defineProps<{
+  filters: Record<string, boolean>
+}>() 
+const emit=defineEmits<{(e: 'update:filters', v: Record<string, boolean>): void
+}>() 
+const filters = useVModel(props, 'filters', emit) 
 const selected = ref('aboveAverage')
+
 </script>
 
 <template>
@@ -46,51 +54,51 @@ const selected = ref('aboveAverage')
                   <Placeholder class="h-32" />
                   Dane
                   <UCheckbox
-                    v-model="funkcyjne"
+                    v-model="filters.funkcyjne"
                     label="Funkcyjne"
                   />
                   <UCheckbox
-                    v-model="sensor"
+                    v-model="filters.sensor"
                     label="Sensor"
                   />
                   <UCheckbox
-                    v-model="temperatura"
+                    v-model="filters.temperatura"
                     label="Temperatura"
                   />
                   <UCheckbox
-                    v-model="wilgotnosc"
+                    v-model="filters.wilgotnosc"
                     label="Wilgotność"
                   />
                   <UCheckbox
-                    v-model="poziomSwiatla"
+                    v-model="filters.poziomSwiatla"
                     label="Poziom światła"
                   />
                   <UCheckbox
-                    v-model="sredniPar"
+                    v-model="filters.PAR"
                     label="Średni PAR"
                   />
                   <UCheckbox
-                    v-model="poziomCO2"
+                    v-model="filters.CO2"
                     label="Poziom CO2"
                   />
                   <UCheckbox
-                    v-model="poziomWodyWPodlozu"
+                    v-model="filters.poziomWodyWPodlozu"
                     label="Poziom wody w podłożu"
                   />
                   <UCheckbox
-                    v-model="poziomZasoleniawPodlozu"
+                    v-model="filters.zasolenie"
                     label="Poziom zasolenia (ED) w podłożu"
                   />
                   <UCheckbox
-                    v-model="temperaturaPodloza"
+                    v-model="filters.temperaturaPodloza"
                     label="Temperatura podłoża"
                   />
                   <UCheckbox
-                    v-model="wagaPodlozaIRoslin"
+                    v-model="filters.wagaPodlozaIRoslin"
                     label="Waga podłoża i roślin"
                   />
                   <UCheckbox
-                    v-model="mikroZmiennoscLodygi"
+                    v-model="filters.MikroZmiennosc"
                     label="Mikro zmienność łodygi"
                   />
                   <template #footer>
