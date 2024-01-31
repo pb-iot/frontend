@@ -12,7 +12,10 @@ const isWebGLSupported = detectWebGLContext()
       v-if="isWebGLSupported"
       :locations="locations"
       :watch-changes="watchChanges"
-    />
+      v-slot="{ location }"
+    >
+      <slot :location="location" />
+    </LazyUnsafeMap>
     <div
       v-else
       class="text-gray-600 p-8"

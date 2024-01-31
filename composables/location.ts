@@ -6,8 +6,7 @@ export const useLocations = createSharedComposable(async () => {
       if (loc == null) return null
 
       return {
-        id: loc.id,
-        name: loc.name,
+        ...loc,
         lat: +loc.coordinates.split(',')[0],
         lng: +loc.coordinates.split(',')[1],
       }

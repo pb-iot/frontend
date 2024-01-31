@@ -2,23 +2,9 @@
 import { useColorMode } from '@vueuse/core'
 
 const links = [{
-  label: 'Moje szklarnie',
-  icon: 'i-heroicons-map-pin-solid',
-  to: '/dashboard'
-}, {
-  label: 'Moje lokalizacje',
-  // placeholder bo nie wiem skad wziac ikonke szklarni
-  icon: 'i-heroicons-building-storefront-solid',
-  to: '/dashboard'
-}, {
-  label: 'Mój profil',
-  icon: 'i-heroicons-user-circle-solid',
-  to: '/dashboard'
-}]
-const links2 = [{
   label: 'Lista szklarni',
   icon: 'i-heroicons-list-bullet',
-  to: '/dashboard/greenhouse'
+  to: '/dashboard'
 }, {
   label: 'Dodaj szklarnię',
   icon: 'i-heroicons-plus-circle-solid',
@@ -91,9 +77,6 @@ const { user } = await useAuthenticatedUser()
           :links="links"
           class="ml-3 w-11/12 my-1"
         />
-      </div>
-      <div class="ml-3 w-11/12 my-1">
-        <UVerticalNavigation :links="links2" />
       </div>
     </div>
 
