@@ -7,7 +7,7 @@ const schema = createSchema({
   email: useEmailValidationSchema()
 })
 
-const submit = createSubmitHandler(schema, (values) => {
+const { submit, loading } = createSubmitHandler(schema, async (values) => {
   // TODO: Wysłanie zapytania do backendu
   console.log(values)
 })
@@ -43,6 +43,7 @@ const submit = createSubmitHandler(schema, (values) => {
         <!-- TODO: Gdy walidacja jest zła nie powinno przechodzić do następnego widoku -->
         <UButton
           to="/reset-password-message"
+          :loading="loading"
           label="Resetuj hasło"
           type="submit"
           block

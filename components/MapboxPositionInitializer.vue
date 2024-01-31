@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const props = defineProps<{ locations: Location[] }>()
+const props = defineProps<{
+  locations: Location[]
+  watchChanges?: boolean
+}>()
 const vmb_map = inject('vmb_map')
-onMounted(async () => {
+
+const fitBounds = async () => {
   const mapInstance = await vmb_map.promise
 
   // get bounds of locations
@@ -15,5 +19,14 @@ onMounted(async () => {
   }
 
   mapInstance.fitBounds([minPoint, maxPoint])
-})
+}
+
+onMounted(fitBounds)
+
+watchDebounced(() => props.locations, () => {
+  if (!props.watchChanges) return
+  return fitBounds()
+}, { debounce: 500 })
 </script>
+
+<template></template>

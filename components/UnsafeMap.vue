@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { MapboxMap, MapboxMarker, MapboxPopup } from 'vue-mapbox-ts'
-defineProps<{ locations: Location[] }>()
+defineProps<{
+  locations: Location[]
+  watchChanges?: boolean
+}>()
 
 const config = useRuntimeConfig()
+
+
 </script>
 
 <template>
@@ -10,7 +15,10 @@ const config = useRuntimeConfig()
     :access-token="config.public.MAPBOX_TOKEN"
     :max-zoom="13"
   >
-    <MapboxPositionInitializer :locations="locations ?? []" />
+    <MapboxPositionInitializer 
+      :locations="[...(locations ?? [])]" 
+      :watch-changes="watchChanges" 
+    />
     <MapboxMarker
       v-for="loc in locations ?? []"
       :key="[loc.lng, loc.lat]"

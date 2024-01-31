@@ -1,0 +1,55 @@
+mutation CreateLocation($name: String!, $lng: Float!, $lat: Float!) {
+  createLocation(input: {lat: $lat, lon: $lng, name: $name}) {
+    location {
+      id
+    }
+  }
+}
+
+mutation UpdateLocation($id: Int!, $name: String!, $lng: Float!, $lat: Float!) {
+  updateLocation(id: $id, input: {lat: $lat, lon: $lng, name: $name}) {
+    location {
+      id
+    }
+  }
+}
+
+mutation DeleteLocation($id: Int!) {
+  deleteLocation(id: $id) {
+    location {
+      id
+    }
+  }
+}
+
+query GetLocation($id: Int!) {
+  location(id: $id) {
+    id
+    name
+    coordinates
+
+    owner {
+      id
+    }
+
+    greenhouseSet {
+      id
+    }
+  }
+}
+
+query GetLocations {
+  locations {
+    id
+    name
+    coordinates
+
+    owner {
+      id
+    }
+
+    greenhouseSet {
+      id
+    }
+  }
+}

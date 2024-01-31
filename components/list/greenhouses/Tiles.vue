@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  greenhouseOptions:(greenhouse: Greenhouse) => ({
+  greenhouseOptions: (greenhouse: Greenhouse) => ({
     label: string;
     icon: string;
     to: string;
@@ -13,7 +13,8 @@ defineProps<{
   }[])[]
 }>()
 
-const { greenhouses } = await useGreenhouses()
+const userStore = useUserStore()
+const greenhouses = await useGreenhouses()
 </script>
 
 <template>
@@ -31,7 +32,8 @@ const { greenhouses } = await useGreenhouses()
           />
           Szklarnia
           <div class="w-5">
-            <div :class="greenhouse.users.length < 3 ? 'pl-16' : 'pl-10'">
+            {{ greenhouse }}
+            <div :class="greenhouse.authorizedUsers.length < 3 ? 'pl-16' : 'pl-10'">
               <UAvatarGroup
                 :max="2"
                 :ui="{ margin: 'me-1 first:me-0' }"

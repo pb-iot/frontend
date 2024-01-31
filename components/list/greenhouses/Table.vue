@@ -3,8 +3,6 @@ defineProps<{
   greenhouseOptions:(greenhouse: Greenhouse) => []
 }>()
 
-const { greenhouses } = await useGreenhouses()
-
 const columns = [{
   key: 'name',
   label: 'Nazwa'
@@ -23,6 +21,8 @@ const columns = [{
 }, {
   key: 'actions'
 }]
+const userStore = useUserStore()
+const greenhouses = await useGreenhouses()
 </script>
 
 <template>

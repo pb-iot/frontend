@@ -1,15 +1,8 @@
 <script setup lang="ts">
-import type { UButton } from '#ui-colors/components'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-const id = computed(() => route.params.greenhouseId)
-const dataForTitle = 'xd'
-const averageTemperature = '1'
-const user = {
-  firstname: 'Ola',
-  lastname: 'Wrobel',
-  avatar: 'https://avatars.githubusercontent.com/u/739984?v=4'
-}
+const greenhouse = await useGreenhouse(() => route.params.greenhouseId)
+
 const greenhouseStats = {
   averageTemperature: '1',
   averageAirHumidity: '2',
@@ -23,17 +16,12 @@ const greenhouseStats = {
   averageStemMicroVariability: '2'
 }
 
+const averageStats = await GqlGetEnvironments(() => route.params.greenhouseId)
+
 </script>
 
 <template>
   <div class="grid grid-cols-2 gap-8">
-    <div>
-      <h1>My Greenhouse: {{ id }}</h1>
-      <StatsCardNew />
-      <!--<ProfileOptionsAndInfo :user="user" />-->
-      <!--<StatsSingleGreenhouse :greenhouse-stats="greenhouseStats" />-->
-      <!--<EnvironmentCard />-->
-      <EnvironmentTargetEnvironment />
-    </div>
+    <StatsCard/>
   </div>
 </template>

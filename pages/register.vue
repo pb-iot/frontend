@@ -14,7 +14,7 @@ const schema = createSchema({
 const auth = useAuthStore()
 const router = useRouter()
 
-const submit = createSubmitHandler(schema, async (values) => {
+const { submit, loading } = createSubmitHandler(schema, async (values) => {
   await auth.register(values)
     .then(() => router.push('/dashboard'))
     .catch((error) => {
@@ -65,6 +65,7 @@ const submit = createSubmitHandler(schema, async (values) => {
       />
       <UButton
         type="submit"
+        :loading="loading"
         class="mt-20 mx-auto"
         label="Zarejestruj się"
         block

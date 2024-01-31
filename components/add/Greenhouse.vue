@@ -1,43 +1,22 @@
 <script setup lang="ts">
-interface Map {
-  street: String,
-  city: String,
-  code: String
-}
+const props = defineProps<{
+  users: string[]
+}>()
 
-const locations = [
-  {
-    lng: 23.342342,
-    lat: 53.342342
-  }
-]
+const { locations } = await useLocations()
+const locationOptions = computed(() => {
+  return locations.value.map((location) => {
+    return {
+      label: location.name,
+      value: location
+    }
+  })
+})
 
-// locationOptions for now when we don't use library to choose location
-// TODO: Add locationOptions and map
-const locationOptions: SelectFieldOption[] = [{
-  label: 'Ogrodowa 5, 16-500 Sejny',
-  value: {
-    street: 'Ogrodowa 5',
-    city: 'Sejny',
-    code: '16-500'
-  } as Map
-},
-{
-  label: 'Wyszyńskiego 30, 15-800 Białystok',
-  value: {
-    street: 'Wyszyńskiego 30',
-    city: 'Sejny',
-    code: '15-800'
-  } as Map
-},
-{
-  label: 'Obi-wana Kenobiego 9, 12-800 Poznań',
-  value: {
-    street: 'Obi-wana Kenobiego 9',
-    city: 'Poznań',
-    code: '12-800'
-  } as Map
-}]
+const location = ref(locationOptions.value?.[0] ?? undefined)
+const mapLocation = computed(() => {
+  return location.value?.value ?? { lat: 0, lng: 0 }
+})
 
 interface Link {
   label: string
@@ -50,9 +29,6 @@ const addGreenhouseElementsLinks = [{
   icon: 'i-heroicons-plus-circle-20-solid'
 }, {
   label: 'Dodaj urządzenia szklarni',
-  icon: 'i-heroicons-plus-circle-20-solid'
-}, {
-  label: 'Docelowe środowisko szklarni',
   icon: 'i-heroicons-plus-circle-20-solid'
 }] as const
 const selectedLink = ref<typeof addGreenhouseElementsLinks[number]['label']>()
@@ -71,13 +47,22 @@ watch(selectedLink, () => {
 })
 
 const schema = createSchema({
-  greenhouseName: useGreenhouseNameValidationSchema(),
-  typeOfCrop: Yup.string().min(2, 'Niepoprawny typ uprawy').required('Typ uprawy jest wymagany')
+  name: useGreenhouseNameValidationSchema(),
+  cropType: Yup.string().oneOf(['TT', 'PT'], 'Niepoprawny typ uprawy. (Poprawne typy: TT, PT)').required('Typ uprawy jest wymagany')
+
 })
 
-const submit = createSubmitHandler(schema, (values) => {
-  // TODO: Send request to the backend
-  console.log(values)
+const router = useRouter()
+const { submit, loading } = createSubmitHandler(schema, async (values) => {
+  if (!location.value) return
+
+  const { createGreenhouse: greenhouse } = await GqlCreateGreenhouse({
+    authorizedUsers: props.users,
+    ...values,
+    location: location.value.value!.id,
+  })
+
+  router.push(`/dashboard/greenhouse/${greenhouse!.greenhouse!.id}`)
 })
 
 const submitBtn = ref()
@@ -100,12 +85,13 @@ const submitBtn = ref()
     <div class="px-4 pt-5 sm:p-6 sm:pb-0">
       <Form
         :validation-schema="schema"
+        :initial-values="greenhouse ?? {}"
         @submit="submit"
       >
         <TextField
           placeholder="Wpisz nazwę"
           class="py-2"
-          name="greenhouseName"
+          name="name"
           label="Nazwa szklarni"
           required
         />
@@ -113,7 +99,7 @@ const submitBtn = ref()
         <TextField
           placeholder="Wpisz rodzaj uprawy"
           class="py-2"
-          name="typeOfCrop"
+          name="cropType"
           label="Rodzaj uprawy"
           required
         />
@@ -125,10 +111,12 @@ const submitBtn = ref()
             name="location"
             icon="i-heroicons-map-pin-20-solid"
             :options="locationOptions"
+            v-model="location"
             required
           />
           <UButton
             label="Dodaj nową lokację"
+            to="/dashboard/location/add-new"
             color="gray"
             icon="i-heroicons-plus-circle-20-solid"
           />
@@ -142,7 +130,8 @@ const submitBtn = ref()
     </div>
     <Map
       class="h-64 mx-4 mb-6 mt-2"
-      :locations="locations"
+      :locations="[mapLocation]"
+      watch-changes
     />
 
     <div class="border-t-2 border-gray-200 px-4 py-6">
@@ -170,6 +159,7 @@ const submitBtn = ref()
         />
         <UButton
           class="ml-2 px-[33.35px]"
+          :loading="loading"
           :ui="{ base:'focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0' }"
           label="Zapisz szklarnię"
           block

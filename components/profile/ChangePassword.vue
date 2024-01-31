@@ -18,6 +18,17 @@ defineProps<{
 
 const confirm = () => console.log('confirm')
 const cancel = () => console.log('cancel')
+const schema = createSchema({
+  password: Yup.string().required('Hasło jest wymagane'),
+  newPassword:Yup.string().required('Nowe hasło jest wymagane'),
+  oldPassword: Yup.string().required('Stare hasło jest wymagane'),
+
+})
+
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Send request to the backend
+  console.log(values)
+})
 </script>
 
 <template>

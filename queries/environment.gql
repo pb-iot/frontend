@@ -1,0 +1,86 @@
+mutation CreateEnvironment(
+  $airHumidity: Decimal, 
+  $co2Level: Decimal, 
+  $date: DateTime, 
+  $greenhouse: Int, 
+  $lightLevel: Decimal, 
+  $par: Decimal, 
+  $soilMoistureLevel: Decimal, 
+  $soilSalinity: Decimal, 
+  $soilTemperature: Decimal, 
+  $stemMicroVariability: Decimal, 
+  $temperature: Decimal, 
+  $weightOfSoilAndPlants: Decimal
+) {
+  createEnvironment(
+    input: {
+      airHumidity: $airHumidity, 
+      co2Level: $co2Level, 
+      date: $date, 
+      greenhouse: $greenhouse, 
+      lightLevel: $lightLevel, 
+      par: $par, 
+      soilSalinity: $soilSalinity, 
+      soilTemperature: $soilTemperature, 
+      stemMicroVariability: $stemMicroVariability, 
+      temperature: $temperature, 
+      weightOfSoilAndPlants: $weightOfSoilAndPlants, 
+      soilMoistureLevel: $soilMoistureLevel
+    }
+  ) {
+    environment {
+      id
+    }
+  }
+}
+
+
+mutation DeleteEnvironment($id: Int!) {
+  deleteEnvironment(id: $id) {
+    environment {
+      id
+    }
+  }
+}
+
+query GetEnvironment($id: Int!) {
+  environment(id: $id) {
+    airHumidity
+    co2Level
+    date
+    id
+    lightLevel
+    par
+    soilMoistureLevel
+    soilSalinity
+    soilTemperature
+    stemMicroVariability
+    temperature
+    weightOfSoilAndPlants
+
+    greenHouse {
+      id
+    }
+  }
+}
+
+query GetEnvironments {
+  environments {
+    airHumidity
+    co2Level
+    date
+    id
+    lightLevel
+    par
+    soilMoistureLevel
+    soilSalinity
+    soilTemperature
+    stemMicroVariability
+    temperature
+    weightOfSoilAndPlants
+
+    greenHouse {
+      id
+    }
+  }
+}

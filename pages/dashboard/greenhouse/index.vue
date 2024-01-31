@@ -1,10 +1,4 @@
 <script setup lang="ts">
-const { greenhouses } = await useGreenhouses()
-// Na potrzeby testowania
-for (let i = 0; i < 6; ++i) {
-  greenhouses.value.push(greenhouses.value[0])
-}
-
 // Note: navigation
 const items = [{
   label: 'Lista',
@@ -27,21 +21,21 @@ const greenhouseOptions = (greenhouse: Greenhouse) => [
   [{
     label: 'Zobacz szklarnię',
     icon: 'i-heroicons-arrow-right-20-solid',
-    to: '/edit',
+    to: `/dashboard/greenhouse/${greenhouse.id}`,
     click: () => {
       console.log('Edit')
     }
   }], [{
     label: 'Edytuj szklarnie',
     icon: 'i-heroicons-pencil-square-20-solid',
-    to: '/edit',
+    to: `/dashboard/greenhouse/${greenhouse.id}/edit`,
     click: () => {
       console.log('Edit')
     }
   }], [{
     label: 'Zarządzaj użytkownikami',
     icon: 'i-heroicons-user-group-20-solid',
-    to: '/edit',
+    to: `/dashboard/greenhouse/${greenhouse.id}`,
     click: () => {
       console.log('Edit')
     }

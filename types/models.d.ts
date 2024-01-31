@@ -1,42 +1,11 @@
-declare interface User {
-  id: number
-  name: string
-  surname: string
-  type: string
-  avatar?: string
-  // NOTE: can be extended in the future
-}
+import { GetGreenhouseQuery, GetUserQuery, GetDeviceQuery, GetAuthenticatedUserQuery } from "#gql/default"
 
-declare interface Location {
+declare type User = GetUserQuery
+declare type AuthenticatedUser = GetAuthenticatedUserQuery
+declare type Device = GetDeviceQuery
+declare type Greenhouse = GetGreenhouseQuery
+
+declare interface Coordinates {
   lng: number
   lat: number
-}
-
-declare interface Device {
-  id: number
-  name: string
-  brand: string
-  type: string
-}
-
-declare interface TargetGreenhouseEnvironment {
-  temperature: number
-  airHumidity: number
-  lightIntensity: number
-  carbonDioxideLevel: number
-  waterLevelInSubstrate: number
-  salinityLevelInSubstrate: number
-  substrateTemperature: number
-  weightOfSubstrateAndPlant: number
-  stemMicrovariation: number
-}
-
-declare interface Greenhouse {
-  id: number
-  name: string
-  plantType: string
-  location: Location
-  users: User[]
-  devices: Device[]
-  targetGreenhouseEnvironment: TargetGreenhouseEnvironment
 }

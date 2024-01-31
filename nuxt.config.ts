@@ -48,6 +48,13 @@ export default defineNuxtConfig({
     }
   },
 
+  
+  'graphql-client':{
+    codegen: {
+      silent: false
+    }
+  },
+
   runtimeConfig: {
     public: {
       GQL_HOST: '',

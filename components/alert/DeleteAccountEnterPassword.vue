@@ -12,7 +12,9 @@ const schema = createSchema({
       Aby usunąć konto, podaj swoje hasło
     </template>
     <template #description>
-      <Form>
+      <Form
+        :validation-schema="schema"
+        @submit="submit">
         <TextField
           class="py-1"
           name="password"

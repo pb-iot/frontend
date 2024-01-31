@@ -8,7 +8,7 @@ const schema = createSchema({
   passwordConfirmation: usePasswordConfirmationValidationSchema()
 })
 
-const submit = createSubmitHandler(schema, (values) => {
+const { submit, loading } = createSubmitHandler(schema, async (values) => {
   // TODO: Wysłanie zapytania do backendu
   console.log(values)
 })
@@ -46,6 +46,7 @@ const submit = createSubmitHandler(schema, (values) => {
         />
         <UButton
           type="submit"
+          :loading="loading"
           class="mt-20 mx-auto"
           label="Zmień hasło"
           block

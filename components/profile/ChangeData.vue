@@ -14,6 +14,19 @@ const submit = createSubmitHandler(schema, (values) => {
 }) 
 const confirm = () => console.log('confirm')
 const cancel = () => console.log('cancel')
+
+
+const schema = createSchema({
+  name: Yup.string().required('Imię jest wymagane'),
+  surname:Yup.string().required('Nazwisko jest wymagane'),
+  email: useEmailValidationSchema()
+
+})
+
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Send request to the backend
+  console.log(values)
+})
 </script>
 
 <template>
@@ -51,19 +64,16 @@ const cancel = () => console.log('cancel')
             required
           />
         </div>
-
-        <UFormGroup
-          label="Email"
-          description="Nie możesz zmienić swojego e-maila."
-          required
-        >
-          <div class="mb-2">
-            <UInput
-              placeholder="kowalski.jan123@gmail.com"
-              icon="i-heroicons-envelope"
-            />
-          </div>
-        </UFormGroup>
+        <div class="mb-2">
+          <TextField
+            class="py-1"
+            name="email"
+            label="Email"
+            description="Nie możesz zmienić swojego e-maila."
+            placeholder="kowalski.jan123@gmail.com"
+            icon="i-heroicons-envelope"
+            :disabled="true"/>
+        </div>
       </Form>
     </div>
     <!-- Data change form -->
