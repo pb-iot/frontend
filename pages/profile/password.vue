@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const user = await useAuthenticatedUser()
+const { user, refresh } = await useAuthenticatedUser()
 
 const schema = createSchema({
   oldPassword: Yup.string().required('Hasło jest wymagane'),
@@ -37,7 +37,7 @@ const { submit, loading } = createSubmitHandler(schema, async (values, actions) 
     return
   }
 
-  await user.refresh()
+  await refresh()
   return router.push('/profile')
 })
 

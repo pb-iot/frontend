@@ -1,7 +1,7 @@
 export const useAuthenticatedUser = createSharedComposable(async () => {
   const auth = useAuthStore()
 
-  const { data: authorizedUser, error, refresh } = await useAsyncData('authorizedUser', () => GqlGetAuthenticatedUser(), {
+  const { data: user, error, refresh } = await useAsyncData('authorizedUser', () => GqlGetAuthenticatedUser(), {
     transform: (data) => data?.authenticatedUser
   })
 
@@ -20,12 +20,10 @@ export const useAuthenticatedUser = createSharedComposable(async () => {
     return forceLogout()
   })
 
-  watch(authorizedUser, (user) => {
+  watch(user, (user) => {
     if (user) return
     return forceLogout()
   })
 
-  return extendRef(authorizedUser, {
-    refresh
-  })
+  return { user, refresh }
 })

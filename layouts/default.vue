@@ -27,7 +27,7 @@ const links2 = [{
 ]
 
 const colorMode = useColorMode()
-const user = await useAuthenticatedUser()
+const { user } = await useAuthenticatedUser()
 </script>
 
 <template>

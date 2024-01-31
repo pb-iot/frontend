@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const { users } = await useUsers()
-const user = await useAuthenticatedUser()
+const { user } = await useAuthenticatedUser()
 
 const links = computed(() => users.value!.filter(u => u!.id != user.value!.id).map((user) => ({
   label: `${user!.firstName} ${user!.lastName}`,

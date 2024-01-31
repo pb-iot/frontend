@@ -17,7 +17,7 @@ const options = [[
   }
 ]]
 
-const user = await useAuthenticatedUser()
+const { user } = await useAuthenticatedUser()
 </script>
 
 <template>

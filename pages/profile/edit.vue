@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const user = await useAuthenticatedUser()
+const { user, refresh } = await useAuthenticatedUser()
 
 const initial = {
   firstName: user.value?.firstName ?? '',
@@ -19,7 +19,7 @@ const { submit, loading } = createSubmitHandler(schema, async (values) => {
     ...values
   })
 
-  await user.refresh()
+  await refresh()
   return router.push('/profile')
 })
 
