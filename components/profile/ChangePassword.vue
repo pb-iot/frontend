@@ -1,5 +1,12 @@
 <script setup lang="ts">
-// TODO: ADD VALIDATION
+const schema = createSchema({
+  password: usePasswordValidationSchema(),
+  passwordConfirmation: usePasswordConfirmationValidationSchema()
+})
+const submit = createSubmitHandler(schema, (values) => {
+  // TODO: Send request to the backend
+  console.log(values)
+}) 
 defineProps<{
     // TODO: Use `User` type
     user: {
@@ -51,7 +58,7 @@ const submit = createSubmitHandler(schema, (values) => {
         <div class="mb-2">
           <TextField
             class="py-1"
-            name="newPassword"
+            name="password"
             label="Podaj nowe hasło"
             type="password"
             required

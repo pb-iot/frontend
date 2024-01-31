@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO: ADD VALIDATION
 defineProps<{
     // TODO: Use `User` type
     user: {
@@ -35,11 +34,7 @@ const cancel = () => console.log('cancel')
   >
     <template #options>
       <UDropdown :items="options">
-        <UButton
-          color="white"
-          label="Opcje"
-          trailing-icon="i-heroicons-chevron-down-20-solid"
-        />
+        <UButton color="white" label="Opcje" trailing-icon="i-heroicons-chevron-down-20-solid" />
       </UDropdown>
     </template>
     <!-- Personal Information -->
