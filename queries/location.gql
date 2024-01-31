@@ -1,13 +1,13 @@
-mutation CreateLocation($name: String!, $lon: Float!, $lat: Float!) {
-  createLocation(input: {lat: $lat, lon: $lon, name: $name}) {
+mutation CreateLocation($name: String!, $lng: Float!, $lat: Float!) {
+  createLocation(input: {lat: $lat, lon: $lng, name: $name}) {
     location {
       id
     }
   }
 }
 
-mutation UpdateLocation($id: Int!, $name: String!, $lon: Float!, $lat: Float!) {
-  updateLocation(id: $id, input: {lat: $lat, lon: $lon, name: $name}) {
+mutation UpdateLocation($id: Int!, $name: String!, $lng: Float!, $lat: Float!) {
+  updateLocation(id: $id, input: {lat: $lat, lon: $lng, name: $name}) {
     location {
       id
     }

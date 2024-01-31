@@ -1,71 +1,32 @@
 <script setup lang="ts">
-// TODO: Fetch users from the database
-// NOTE: Example users
 const emit = defineEmits<{
-  updateAssignedUsers: [id: User[]]
+  (e: 'update:users', v: []): void
 }>()
 
 const props = defineProps<{
-  users: AuthenticatedUser[]
+  users: []
 }>()
 
-const users = toRef(props, 'users')
-const links = users.value.map((user) => ({
-  label: `${user.firstName} ${user.lastName}`,
-  icon: 'i-heroicons-plus-circle-20-solid',
+const { users } = await useUsers()
+const user = await useAuthenticatedUser()
+
+const links = computed(() => users.value!.filter(u => u!.id != user.value!.id).map((user) => ({
+  label: `${user!.firstName} ${user!.lastName}`,
+  assigned: assignedUsers.value.some(u => u.id == user!.id),
+  avatar: useAvatar(user),
   user
-}))
+})))
 
-const assignedUsers = reactive([])
-const addUserToAssignedUsers = (user) => {
-  let indexOfUserInArray = -1
-  for (let i = 0; i < assignedUsers.length; ++i) {
-    if (assignedUsers[i].id === user.id) {
-      indexOfUserInArray = i
+const assignedUsers = useVModel(props, 'users', emit)
 
-      // if (assignedUsers[i].type === user.type) return
-      break
-    }
-  }
-
-  if (indexOfUserInArray !== -1) {
-    // NOTE: Jak zrobiłem assignedUsers.splice(indexOfUserInArray, 1, user), to v-for nie wykrywał update - nie wiem czy nie zgłosić tego na stronie vue
-    assignedUsers.splice(indexOfUserInArray, 1)
-    assignedUsers.splice(indexOfUserInArray, 0, user)
+const toggle = (user) => {
+  const index = assignedUsers.value.findIndex(u => u.id === user.id)
+  if (index > -1) {
+    assignedUsers.value.splice(index, 1)
   } else {
-    assignedUsers.push(user)
+    assignedUsers.value.push(user)
   }
-
-  emit('updateAssignedUsers', assignedUsers)
 }
-
-const dropdownItems = ({ user }: typeof links[number]) => [
-  [
-    {
-      label: 'Dodaj jako właściciel',
-      click: () => {
-        user.type = 'Właściciel'
-        addUserToAssignedUsers(user)
-      }
-    },
-    {
-      label: 'Dodaj jako pracownik',
-      click: () => {
-        user.type = 'Pracownik'
-        addUserToAssignedUsers(user)
-        emit('updateAssignedUsers', assignedUsers)
-      }
-    },
-    {
-      label: 'Dodaj jako obserwator',
-      click: () => {
-        user.type = 'Obserwator'
-        addUserToAssignedUsers(user)
-        emit('updateAssignedUsers', assignedUsers)
-      }
-    }
-  ]
-]
 </script>
 
 <template>
@@ -79,45 +40,25 @@ const dropdownItems = ({ user }: typeof links[number]) => [
         Użytkownicy
       </div>
     </template>
-    <div
-      v-if="assignedUsers.length === 0"
-      class="pl-10 py-5 font-bold text-gray-400"
-    >
+    <div class="pl-10 py-5 font-bold text-gray-400">
       Przypisz użytkowników
-    </div>
-    <div
-      v-else
-      class="px-8 py-5 font-bold text-gray-600 dark:text-gray-400"
-    >
-      <div
-        v-for="user in assignedUsers"
-        :key="user.id"
-      >
-        <div class="flex">
-          {{ user.firstName }} {{ user.lastName }}
-          <div class="font-normal ml-2">
-            {{ user.type }}
-          </div>
-        </div>
-      </div>
     </div>
     <template #footer>
       <div class="relative">
-        <UDropdown
+        <UButton
           v-for="link in links"
-          :key="link.label"
-          :items="dropdownItems(link)"
-          class="w-full"
+          :key="link.user.id"
+          :trailing-icon="link.assigned ? 'i-heroicons-trash-20-solid' : 'i-heroicons-plus-circle-20-solid'"
+          variant="ghost"
+          :color="link.assigned ? 'red' : 'gray'"
+          class="w-full justify-start"
+          block
+          @click="toggle(link.user)"
         >
-          <UButton
-            :trailing-icon="link.icon"
-            :label="link.label"
-            variant="ghost"
-            color="gray"
-            class="w-full justify-between"
-            block
-          />
-        </UDropdown>
+          <UAvatar :src="link.avatar" />
+          {{ link.label }}
+          <div class="mr-auto"></div>
+        </UButton>
       </div>
     </template>
   </UCard>

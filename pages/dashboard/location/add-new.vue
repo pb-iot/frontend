@@ -1,22 +1,29 @@
 <script setup lang="ts">
 
 const schema = createSchema({
-  locationName: Yup.string().required()
+  name: Yup.string().required(),
+  lat: Yup.number().required(),
+  lng: Yup.number().required(),
 })
 
+const latLng = ref({
+  lat: 52.123456,
+  lng: 22.123456,
+})
+
+const router = useRouter()
 const { submit, loading } = createSubmitHandler(schema, async (values) => {
-  // TODO: Send request to the backend
-  console.log(values)
+  await GqlCreateLocation(values)
+  router.back()
 })
 
-const locations = await useLocations()
 const submitBtn = ref()
 </script>
 
 <template>
-  <div class="flex w-full h-full px-20">
+  <div class="flex w-full px-20">
     <UCard
-      class="sticky top-[112px] w-[500px] h-[537px]"
+      class="sticky top-[112px] w-[500px]"
       :ui="{ body: { padding: ''}}"
     >
       <template #header>
@@ -31,15 +38,37 @@ const submitBtn = ref()
       <div class="px-4 pt-5 sm:p-6 sm:pb-0">
         <Form
           :validation-schema="schema"
+          :initial-values="latLng"
           @submit="submit"
         >
           <TextField
             placeholder="Wpisz nazwę"
             class="py-2"
-            name="locationName"
+            name="name"
             label="Nazwa lokacji"
             required
           />
+
+          <div class="grid grid grid-cols-2 gap-2">
+            <TextField
+              placeholder="52.123456"
+              class="py-2"
+              name="lat"
+              label="Latitude"
+              required
+              @update:model-value="latLng.lat = +$event"
+            />
+
+            <TextField
+              placeholder="22.123456"
+              class="py-2"
+              name="lng"
+              label="Longitude"
+              required
+              @update:model-value="latLng.lng = +$event"
+            />
+          </div>
+
           <button
             ref="submitBtn"
             type="submit"
@@ -49,12 +78,14 @@ const submitBtn = ref()
       </div>
       <Map
         class="h-64 mx-4 mb-6 mt-2"
-        :locations="locations"
+        :locations="[latLng]"
+        :watch-changes="true"
       />
 
       <template #footer>
         <div class="grid grid-cols-2">
           <UButton
+            @click="router.back()"
             color="red"
             class="px-16 mr-2"
             variant="soft"

@@ -1,17 +1,13 @@
 <script setup lang="ts">
-defineProps<{ 
-  locations?: Location[] 
-  watchChanges?: boolean
-}>()
 const isWebGLSupported = detectWebGLContext()
+
+
 </script>
 
 <template>
   <div class="bg-gray-200 rounded-md flex items-center justify-center overflow-hidden">
     <LazyUnsafeMap
       v-if="isWebGLSupported"
-      :locations="locations"
-      :watch-changes="watchChanges"
     />
     <div
       v-else

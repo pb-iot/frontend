@@ -1,4 +1,4 @@
-export const useLocations = async () => {
+export const useLocations = createSharedComposable(async () => {
   const { data: locations, refresh } = await useAsyncData(`locations`, async () => {
     const { locations } = await GqlGetLocations()
 
@@ -16,5 +16,5 @@ export const useLocations = async () => {
     ?? []
   })
 
-  return extendRef(locations, { refresh })
-}
+  return { locations, refresh }
+})
