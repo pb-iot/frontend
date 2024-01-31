@@ -14,7 +14,7 @@ defineProps<{
 }>()
 
 const userStore = useUserStore()
-const greenhouses = computed(() => userStore.authorizedUser?.ownedGreenhouses ?? [])
+const greenhouses = await useGreenhouses()
 </script>
 
 <template>
