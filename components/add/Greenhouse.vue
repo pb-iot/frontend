@@ -3,10 +3,6 @@ const props = defineProps<{
   users: string[]
 }>()
 
-const props = defineProps<{
-  greenhouse?: Greenhouse
-}>()
-
 const { locations } = await useLocations()
 const locationOptions = computed(() => {
   return locations.value.map((location) => {
@@ -113,7 +109,6 @@ const submitBtn = ref()
         <!-- Add map -->
         <div class="flex items-end gap-4 py-2">
           <SelectMenuField
-            v-model="greenhouse.location.name"
             class="flex-1"
             label="Lokalizacja"
             name="location"

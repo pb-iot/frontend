@@ -19,6 +19,6 @@ const greenhouseStats = {
 
 <template>
   <div class="grid grid-cols-2 gap-8">
-    <<StatsSingleGreenhouse :greenhouse-stats="greenhouseStats" />>
+    <StatsSingleGreenhouse :greenhouse-stats="greenhouseStats" />
   </div>
 </template>
