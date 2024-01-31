@@ -15,6 +15,9 @@ const greenhouseStats = {
   averageSoilAndPlantWeight: '1',
   averageStemMicroVariability: '2'
 }
+
+const averageStats = await GqlGetEnvironments(() => route.params.greenhouseId)
+
 </script>
 
 <template>
