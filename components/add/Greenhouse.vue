@@ -30,9 +30,6 @@ const addGreenhouseElementsLinks = [{
 }, {
   label: 'Dodaj urządzenia szklarni',
   icon: 'i-heroicons-plus-circle-20-solid'
-}, {
-  label: 'Docelowe środowisko szklarni',
-  icon: 'i-heroicons-plus-circle-20-solid'
 }] as const
 const selectedLink = ref<typeof addGreenhouseElementsLinks[number]['label']>()
 

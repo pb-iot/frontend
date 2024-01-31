@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const addingGreenhouseElementType = ref('')
-const targetGreenhouseEnvironment = ref()
 const devices: Device[] = []
 
 const users = ref([])
@@ -21,10 +20,6 @@ const users = ref([])
         @add-device="devices.push($event)"
       />
 
-      <AddTargetGreenhouseEnvironment
-        v-else-if="addingGreenhouseElementType === 'Docelowe środowisko szklarni'"
-        @update-greenhouse-environment="targetGreenhouseEnvironment = $event"
-      />
     </div>
   </div>
 </template>
