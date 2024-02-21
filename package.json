@@ -20,7 +20,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@types/lodash-es": "^4.17.12",
     "@vue-macros/nuxt": "^1.9.20",
-    "@vueuse/nuxt": "^10.7.0",
+    "@vueuse/nuxt": "^10.8.0",
     "eslint": "^8.55.0",
     "eslint-config-standard": "^17.1.0",
     "nuxt": "^3.8.2",
