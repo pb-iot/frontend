@@ -28,7 +28,7 @@
     "typescript": "^5.3.3",
     "vitest": "^1.2.1",
     "vue": "^3.4.14",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.3.0"
   },
   "dependencies": {
     "@dicebear/collection": "^7.0.4",

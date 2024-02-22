@@ -12,10 +12,10 @@ dependencies:
     specifier: ^7.0.4
     version: 7.0.4
   '@vee-validate/nuxt':
-    specifier: ^4.12.1
+    specifier: ^4.12.2
     version: 4.12.4(vue@3.4.14)
   '@vee-validate/yup':
-    specifier: ^4.12.1
+    specifier: ^4.12.2
     version: 4.12.4(vue@3.4.14)
   lodash-es:
     specifier: ^4.17.21
@@ -68,7 +68,7 @@ devDependencies:
     specifier: ^17.1.0
     version: 17.1.0(eslint-plugin-import@2.29.1)(eslint-plugin-n@16.6.2)(eslint-plugin-promise@6.1.1)(eslint@8.56.0)
   nuxt:
-    specifier: ^3.9.3
+    specifier: ^3.8.2
     version: 3.9.3(eslint@8.56.0)(sass@1.69.7)(typescript@5.3.3)(vite@5.0.11)
   sass:
     specifier: ^1.69.5
@@ -83,8 +83,8 @@ devDependencies:
     specifier: ^3.4.14
     version: 3.4.14(typescript@5.3.3)
   vue-router:
-    specifier: ^4.2.5
-    version: 4.2.5(vue@3.4.14)
+    specifier: ^4.3.0
+    version: 4.3.0(vue@3.4.14)
 
 packages:
 
@@ -9187,12 +9187,12 @@ packages:
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.9.5)
       unplugin: 1.6.0
-      unplugin-vue-router: 0.7.0(vue-router@4.2.5)(vue@3.4.14)
+      unplugin-vue-router: 0.7.0(vue-router@4.3.0)(vue@3.4.14)
       untyped: 1.4.0
       vue: 3.4.14(typescript@5.3.3)
       vue-bundle-renderer: 2.0.0
       vue-devtools-stub: 0.1.0
-      vue-router: 4.2.5(vue@3.4.14)
+      vue-router: 4.3.0(vue@3.4.14)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -11709,7 +11709,7 @@ packages:
       - webpack
     dev: true
 
-  /unplugin-vue-router@0.7.0(vue-router@4.2.5)(vue@3.4.14):
+  /unplugin-vue-router@0.7.0(vue-router@4.3.0)(vue@3.4.14):
     resolution: {integrity: sha512-ddRreGq0t5vlSB7OMy4e4cfU1w2AwBQCwmvW3oP/0IHQiokzbx4hd3TpwBu3eIAFVuhX2cwNQwp1U32UybTVCw==}
     peerDependencies:
       vue-router: ^4.1.0
@@ -11729,7 +11729,7 @@ packages:
       pathe: 1.1.2
       scule: 1.2.0
       unplugin: 1.6.0
-      vue-router: 4.2.5(vue@3.4.14)
+      vue-router: 4.3.0(vue@3.4.14)
       yaml: 2.3.4
     transitivePeerDependencies:
       - rollup
@@ -12256,8 +12256,8 @@ packages:
       vue: 3.4.14(typescript@5.3.3)
     dev: false
 
-  /vue-router@4.2.5(vue@3.4.14):
-    resolution: {integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==}
+  /vue-router@4.3.0(vue@3.4.14):
+    resolution: {integrity: sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
