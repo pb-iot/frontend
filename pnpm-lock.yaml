@@ -12,10 +12,10 @@ dependencies:
     specifier: ^7.0.4
     version: 7.0.4
   '@vee-validate/nuxt':
-    specifier: ^4.12.1
+    specifier: ^4.12.2
     version: 4.12.4(vue@3.4.14)
   '@vee-validate/yup':
-    specifier: ^4.12.1
+    specifier: ^4.12.2
     version: 4.12.4(vue@3.4.14)
   lodash-es:
     specifier: ^4.17.21
@@ -35,8 +35,8 @@ dependencies:
 
 devDependencies:
   '@iconify/json':
-    specifier: ^2.2.170
-    version: 2.2.170
+    specifier: ^2.2.188
+    version: 2.2.188
   '@nuxt/devtools':
     specifier: latest
     version: 1.0.8(nuxt@3.9.3)(vite@5.0.11)
@@ -68,7 +68,7 @@ devDependencies:
     specifier: ^17.1.0
     version: 17.1.0(eslint-plugin-import@2.29.1)(eslint-plugin-n@16.6.2)(eslint-plugin-promise@6.1.1)(eslint@8.56.0)
   nuxt:
-    specifier: ^3.9.3
+    specifier: ^3.8.2
     version: 3.9.3(eslint@8.56.0)(sass@1.69.7)(typescript@5.3.3)(vite@5.0.11)
   sass:
     specifier: ^1.69.5
@@ -2053,8 +2053,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify/json@2.2.170:
-    resolution: {integrity: sha512-KJQ+LPj5KOpBrTknm0vpb2A6+T12ZyIFInubW3kT/58eZRKtiDv5D87QWVXczL5/uyDr2rkRu8rAfOrGr/UFhA==}
+  /@iconify/json@2.2.188:
+    resolution: {integrity: sha512-gsJwZ60Vb5IrtjYu+Al4qMaML9ZKUnop6Gi0537ZcA6nEhe3Nb58WH4c6b1+mXOHwOkFlLA8AFBXJUHY5nKMdA==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
