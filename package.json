@@ -33,7 +33,7 @@
   "dependencies": {
     "@dicebear/collection": "^7.0.4",
     "@dicebear/core": "^7.0.4",
-    "@vee-validate/nuxt": "^4.12.2",
+    "@vee-validate/nuxt": "^4.12.6",
     "@vee-validate/yup": "^4.12.2",
     "lodash-es": "^4.17.21",
     "magic-regexp": "^0.7.0",
