@@ -23,7 +23,7 @@
     "@vueuse/nuxt": "^10.7.0",
     "eslint": "^8.55.0",
     "eslint-config-standard": "^17.1.0",
-    "nuxt": "^3.8.2",
+    "nuxt": "^3.11.1",
     "sass": "^1.69.5",
     "typescript": "^5.3.3",
     "vitest": "^1.2.1",
